@@ -1,0 +1,15 @@
+             HÓA ĐƠN BÀN 9             
+   Mã hóa đơn: BILL-T9-20250419201431   
+----------------------------------------
+             Trạng thái: On             
+              Số khách: 0              
+            Thời gian: 0:04            
+           CHI TIẾT ĐƠN HÀNG           
+Món: Sữa Chua Dẻo - Số lượng: 1 - Đơn giá: 20000
+Món: Cơm Gà Sốt Teriyaki - Số lượng: 1 - Đơn giá: 55000
+Món: Bánh Mì Thịt Nướng - Số lượng: 1 - Đơn giá: 30000
+Món: Cà Phê Sữa Đá - Số lượng: 1 - Đơn giá: 28000
+----------------------------------------
+         TỔNG CỘNG: 133000 VNĐ         
+----------------------------------------
+           CẢM ƠN QUÝ KHÁCH!           

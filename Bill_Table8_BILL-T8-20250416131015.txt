@@ -1,0 +1,19 @@
+             HÓA ĐƠN BÀN 8             
+   Mã hóa đơn: BILL-T8-20250416131015   
+----------------------------------------
+             Trạng thái: On             
+              Số khách: 0              
+            Thời gian: 1:51            
+           CHI TIẾT ĐƠN HÀNG           
+Đơn hàng:
+- Bánh Mì Thịt Nướng: 4 x 30000 VNĐ = 120000 VNĐ
+- Nước Ép Cam: 2 x 25000 VNĐ = 50000 VNĐ
+- Pizza Hải Sản: 2 x 85000 VNĐ = 170000 VNĐ
+Tổng cộng: 340000 VNĐ
+--- Đơn hàng mới ---
+Đơn hàng:
+- Bánh Mì Thịt Nướng: 2 x 30000 VNĐ = 60000 VNĐ
+- Cà Phê Sữa Đá: 2 x 28000 VNĐ = 56000 VNĐ
+Tổng cộng: 116000 VNĐ
+----------------------------------------
+           CẢM ƠN QUÝ KHÁCH!           
