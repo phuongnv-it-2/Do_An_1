@@ -2,43 +2,29 @@ package Service;
 
 import Database.JDBCuntil;
 import Main.SystemMain;
-import Main.main;
-import java.net.ServerSocket;
 
-/**
- *
- * @author ASUS
- */
 public class Service {
-    private SystemMain Main;
-    private static Service instance; 
-    private ServerSocket serverSocket;
-    private main main;
+    private SystemMain main;
+    private static Service instance;
 
-   
     public static Service getInstance(SystemMain main) {
         if (instance == null) {
-            instance = new Service(main);  
+            instance = new Service(main);
         }
-        return instance; 
-    }
-     public static Service getInstance() {
         return instance;
     }
 
+    // Constructor riêng tư
     private Service(SystemMain main) {
-        this.Main = Main;
+        this.main = main;
         JDBCuntil.getInstance().getconection(); 
-        main.getBody();
-//.getAddProduct().loadProduct();  
+    }
+      public static Service getInstance() {
+        return instance;
     }
 
-  
-    public SystemMain getmain() {
-        return Main;
+    // Phương thức getMain duy nhất
+    public SystemMain getMain() {
+        return main;
     }
-    public main Getmain()
-    {
-    return main;
-            }
 }

@@ -1,6 +1,11 @@
 package Service;
 
 import Database.JDBCuntil;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,11 +15,14 @@ import java.util.ArrayList;
 import static java.util.Collections.list;
 import java.util.List;
 import java.util.Random;
+import javax.imageio.ImageIO;
+import javax.swing.JOptionPane;
 import model.ModelLogin;
 import model.ModelUser;
 
 public class ServiceUser {
    public static List<String> myList = new ArrayList<>();
+   private ImageAvatar imageAvatar;
 
 
     private final Connection con;
@@ -24,7 +32,7 @@ public class ServiceUser {
     }
 public ModelUser getUserByUsername(String username) throws SQLException {
         if (username == null || username.trim().isEmpty()) {
-            return null; // Tránh truy vấn với dữ liệu không hợp lệ
+            return null; 
         }
 
         PreparedStatement p = null;
@@ -254,6 +262,84 @@ public boolean checkDuplicateEmail(String user) throws SQLException {
     }
     return false;
 }
+   public byte[] getUserImageFromDatabase(String email) {
+    byte[] imageData = null;
+    try {
+        String sql = "SELECT AvatarPath FROM account WHERE email = ?";
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            stmt.setString(1, email);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                imageData = rs.getBytes("AvatarPath");
+            }
+            rs.close();
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return imageData;
+}
+   public void setUserImage(String anh) {
+    BufferedImage image = null;
+
+    try {
+        if (anh != null && !anh.isEmpty()) {
+            File file = new File(anh);
+            if (file.exists()) {
+                image = ImageIO.read(file);
+                System.out.println("Đã tải ảnh đại diện từ file: " + anh);
+            } else {
+                System.out.println("File ảnh không tồn tại: " + anh);
+            }
+        } else {
+            System.out.println("Chuỗi đường dẫn ảnh rỗng hoặc null.");
+        }
+
+        // Nếu ảnh vẫn null thì dùng ảnh mặc định
+        if (image == null) {
+            InputStream defaultImageStream = getClass().getResourceAsStream("/icon/user.png");
+            if (defaultImageStream != null) {
+                image = ImageIO.read(defaultImageStream);
+                System.out.println("Đã tải ảnh đại diện mặc định");
+            } else {
+                System.out.println("Không tìm thấy ảnh đại diện mặc định!");
+            }
+        }
+
+        // Set vào avatar nếu có ảnh
+        if (image != null) {
+            imageAvatar.setImage(image);
+            imageAvatar.repaint(); // Gọi repaint để hiển thị ảnh mới
+
+            System.out.println("Đã đặt ảnh vào ImageAvatar, kích thước: " + imageAvatar.getWidth() + "x" + imageAvatar.getHeight());
+        } else {
+            System.out.println("Không có ảnh hợp lệ để hiển thị trong ImageAvatar!");
+        }
+    } catch (IOException e) {
+        JOptionPane.showMessageDialog(null, "Không thể tải ảnh: " + e.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
+        setDefaultImage();
+    }
+}
+private void setDefaultImage() {
+    try {
+        InputStream defaultImageStream = getClass().getResourceAsStream("/icon/user.png");
+        if (defaultImageStream != null) {
+            BufferedImage defaultImage = ImageIO.read(defaultImageStream);
+            imageAvatar.setImage(defaultImage);
+            imageAvatar.repaint();
+  
+            System.out.println("Đã đặt ảnh mặc định vào ImageAvatar");
+        } else {
+            System.out.println("Không tìm thấy ảnh mặc định để đặt!");
+        }
+    } catch (IOException ex) {
+        System.out.println("Lỗi khi tải ảnh mặc định: " + ex.getMessage());
+        ex.printStackTrace();
+    }
+}
+
+}
+
+
 
    
-}   

@@ -3,6 +3,7 @@ package Component;
 import Event.EventMenu;
 import Event.EventMenuCallBack;
 import Event.EventMenuSelected;
+import Service.ServiceUser;
 import java.awt.Color;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
@@ -17,6 +18,12 @@ import java.awt.geom.Path2D;
 import javax.swing.JFrame;
 import javax.swing.Timer;
 import Swing.ListMenu;
+import java.awt.Dimension;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import javax.imageio.ImageIO;
 import model.Model_Menu;
 
 public class Menu extends javax.swing.JPanel {
@@ -34,11 +41,12 @@ public class Menu extends javax.swing.JPanel {
     private EventMenuCallBack callBack;
     private EventMenu event;
     private final Color baseColor1 = Color.decode("#FF6FD8");
-    private final Color baseColor2 =  Color.decode("#915EFF");
-    private final Color baseColor3 = Color.decode("#5B247A");;
+    private final Color baseColor2 = Color.decode("#915EFF");
+    private final Color baseColor3 = Color.decode("#5B247A");
+    ;
     private Color color1 = baseColor1;
     private Color color2 = baseColor2;
-
+    private ServiceUser serviceUser;
 
     private float blend1 = 0f;
     private float blend2 = 0f;
@@ -46,10 +54,16 @@ public class Menu extends javax.swing.JPanel {
     private Timer timer1;
 
     public Menu() {
-
+        this.serviceUser = new ServiceUser();
         initComponents();
         listMenu.setOpaque(false);
         setOpaque(false);
+        setPreferredSize(new Dimension(276, 669));
+        System.out.println("imageAvatar is visible: " + imageAvatar.isVisible());
+        System.out.println("imageAvatar size after init: " + imageAvatar.getWidth() + "x" + imageAvatar.getHeight());
+        System.out.println("Menu is visible: " + this.isVisible());
+        System.out.println("Menu size: " + this.getWidth() + "x" + this.getHeight());
+        
         listMenu.addEventSelectedMenu(new EventMenuSelected() {
             @Override
             public void menuSelected(int index, EventMenuCallBack callBack) {
@@ -164,16 +178,16 @@ public class Menu extends javax.swing.JPanel {
     }
 
     private void initData() {
-        listMenu.addItem(new Model_Menu("1", "Dashboard", Model_Menu.MenuType.MENU));
-        listMenu.addItem(new Model_Menu("2", "UI Elements", Model_Menu.MenuType.MENU));
-        listMenu.addItem(new Model_Menu("3", "Comonents", Model_Menu.MenuType.MENU));
-        listMenu.addItem(new Model_Menu("4", "Forms Stuff", Model_Menu.MenuType.MENU));
-        listMenu.addItem(new Model_Menu("5", "Date Table", Model_Menu.MenuType.MENU));
-        listMenu.addItem(new Model_Menu("6", "Icons", Model_Menu.MenuType.MENU));
-        listMenu.addItem(new Model_Menu("7", "Sample Page", Model_Menu.MenuType.MENU));
-        listMenu.addItem(new Model_Menu("8", "Extra", Model_Menu.MenuType.MENU));
-        listMenu.addItem(new Model_Menu("9", "More", Model_Menu.MenuType.MENU));
-        listMenu.addItem(new Model_Menu("10", "Message", Model_Menu.MenuType.MENU));
+        listMenu.addItem(new Model_Menu("1", "Raw Material WareHouse ", Model_Menu.MenuType.MENU));
+        listMenu.addItem(new Model_Menu("2", "Material Management", Model_Menu.MenuType.MENU));
+        listMenu.addItem(new Model_Menu("3", "Dish", Model_Menu.MenuType.MENU));
+        listMenu.addItem(new Model_Menu("4", "Dish Management ", Model_Menu.MenuType.MENU));
+        listMenu.addItem(new Model_Menu("5", "Table Management", Model_Menu.MenuType.MENU));
+        listMenu.addItem(new Model_Menu("6", "Employee Management", Model_Menu.MenuType.MENU));
+//        listMenu.addItem(new Model_Menu("7", "Setting", Model_Menu.MenuType.MENU));
+//        listMenu.addItem(new Model_Menu("8", "Extra", Model_Menu.MenuType.MENU));
+        listMenu.addItem(new Model_Menu("7", "Message", Model_Menu.MenuType.MENU));
+        listMenu.addItem(new Model_Menu("8", "Setting", Model_Menu.MenuType.MENU));
         listMenu.addItem(new Model_Menu("", "", Model_Menu.MenuType.EMPTY));
     }
 
@@ -208,19 +222,21 @@ public class Menu extends javax.swing.JPanel {
         panelMoving = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         listMenu = new Swing.ListMenu<>();
+        imageAvatar = new Service.ImageAvatar();
 
         panelMoving.setOpaque(false);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconMenu/violet (1).png"))); // NOI18N
         jLabel1.setText("Violet Restaurant");
 
         javax.swing.GroupLayout panelMovingLayout = new javax.swing.GroupLayout(panelMoving);
         panelMoving.setLayout(panelMovingLayout);
         panelMovingLayout.setHorizontalGroup(
             panelMovingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 270, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
             .addGroup(panelMovingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(panelMovingLayout.createSequentialGroup()
                     .addContainerGap()
@@ -229,11 +245,11 @@ public class Menu extends javax.swing.JPanel {
         );
         panelMovingLayout.setVerticalGroup(
             panelMovingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 62, Short.MAX_VALUE)
+            .addGap(0, 76, Short.MAX_VALUE)
             .addGroup(panelMovingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(panelMovingLayout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, Short.MAX_VALUE)
                     .addContainerGap()))
         );
 
@@ -245,13 +261,20 @@ public class Menu extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(panelMoving, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(listMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(78, 78, 78)
+                .addComponent(imageAvatar, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(78, 78, 78))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(panelMoving, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(imageAvatar, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(listMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE))
+                .addComponent(listMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 445, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 private int x;
@@ -272,11 +295,14 @@ private int x;
                 fram.setLocation(me.getXOnScreen() - x, me.getYOnScreen() - y);
             }
         });
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private Service.ImageAvatar imageAvatar;
     private javax.swing.JLabel jLabel1;
     private Swing.ListMenu<String> listMenu;
     private javax.swing.JPanel panelMoving;
     // End of variables declaration//GEN-END:variables
+
 }

@@ -1,6 +1,6 @@
 package Main;
 
-import view.page.Menu1;
+
 import Service.Service;
 import javax.swing.JPanel;
 import javax.swing.*;
@@ -9,20 +9,21 @@ import java.awt.*;
 import net.miginfocom.swing.MigLayout;
 import Main.*;
 import model.ModelUser;
-import view.page.DashBoard;
+
 import view.page.Body;
 import view.page.TableManager;
 import Component.Menu;
+import Event.EventMenu;
+import view.page.BillPanel;
 
 public class SystemMain extends javax.swing.JFrame {
 
-   
-
     private JPanel contentPane;
-    private final Menu menu ;
-    private  Body body;
-    private TableManager tableManager;
-
+    private final Menu menu;
+    private Body body;
+    private CardLayout cardLayout;
+    private Service service;
+//    private BillPanel billPanel;
 
     public SystemMain() {
         initComponents();
@@ -31,37 +32,75 @@ public class SystemMain extends javax.swing.JFrame {
 
         contentPane = new JPanel();
         contentPane.setLayout(new MigLayout("fillx, filly", "0[300!]0[fill]0", "0[fill]0"));
-           body = new Body();
-           menu = new Menu();
-           tableManager=new TableManager();
-    
+        body = new Body();
+        menu = new Menu();
+//        billPanel=new BillPanel();
+      menu.addEventMenu(new EventMenu() {
+            @Override
+            public void menuIndexChange(int index) {
+                CardLayout cardLayout = body.getCardLayout();
+                if (cardLayout == null || body == null) {
+                    System.err.println("CardLayout or Body is null. Cannot switch panel.");
+                    return;
+                }
 
+                switch (index) {
+                    case 0: // Kho nguyên liệu thô
+                        cardLayout.show(body, "Form_Home_Material");
+                
+                        break;
+                    case 1: 
+//                        cardLayout.show(billPanel, "BillPanel");
+                              cardLayout.show(body, "AddMaterial");
+                        reset();
+                        break;
+                    case 2:
+                        cardLayout.show(body, "Form_Home");
+                        reset();
+                        break;
+                    case 3: 
+                        cardLayout.show(body, "AddProduct");
+                        reset();
+                        break;
+                    case 4:
+                        cardLayout.show(body, "TableManager");
+                        reset();
+                        break;
+                    case 5:
+                        cardLayout.show(body, "AddEmployee");
+                        reset();
+                        break;
+                    case 6: 
+                        cardLayout.show(body, "Form_Home");
+                        break;
+                    case 7: 
+                        cardLayout.show(body, "Form_Home");
+                        break;
+                    default:
+                        cardLayout.show(body, "Form_Home");
+                        break;
+                }
+            }
+        });
 
-
-        contentPane.add(menu, "cell 0 0,grow,push"); 
-     contentPane.add(body, "cell 1 0, grow, push");
+        contentPane.add(menu, "cell 0 0,grow,push");
+        contentPane.add(body, "cell 1 0, grow, push");
 
         setContentPane(contentPane);
 
-//  setLayout(new BorderLayout());
-//
-//        // Tạo CardPanel
-         body = new Body();
-//
-//        // Tạo DashboardPanel và truyền cardPanel
-//         DashBoard = new DashBoard();
-//
-        Service service = Service.getInstance(this);
+        // Không khởi tạo lại body ở đây
+        // body = new Body(); // Xóa dòng này
 
-//        add(DashBoard, BorderLayout.WEST);
-//        add(body, BorderLayout.CENTER);
+        service = Service.getInstance(this);
     }
 
     public Body getBody() {
-       return body;
+        return body;
     }
-   
 
+    public void reset() {
+        // Thêm logic đặt lại trạng thái nếu cần
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

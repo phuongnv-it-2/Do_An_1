@@ -1,7 +1,6 @@
 
 package view.page;
 
-import Component.Form_Home;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 
@@ -11,11 +10,13 @@ public class Body extends JPanel {
     private final CardLayout CardLayout;
     private final Form_Home form_home ;
         private final TableManager  tableManager ;
-//    private final AddProduct addProduct;
-//      private final RevenuePanel revenuePanel;
-//     private final AddEmployee addEmployee;
-//       private final BillPanel billPanel;
-//       	public boolean[] tang;
+
+//      private  RevenuePanel revenuePanel;
+     private  AddEmployee addEmployee;
+     private AddProduct addProduct;
+//     private BillPanel billPanel;
+     private Form_Home_Material form_Home_Material;
+          private AddMaterial addMaterial;
 
        
 
@@ -28,18 +29,23 @@ public class Body extends JPanel {
       
        form_home = new Form_Home();  
        tableManager =new TableManager();
-//        addProduct = new AddProduct();  
-//         revenuePanel = new RevenuePanel();
-//        addEmployee = new AddEmployee();
-//          billPanel = new BillPanel();
+       addEmployee = new AddEmployee();
+       addProduct= new AddProduct();
+//       billPanel = new BillPanel();
+       form_Home_Material= new Form_Home_Material();
+               addMaterial=new AddMaterial();
+               
 
- 
+
+  add(form_Home_Material, "Form_Home_Material");  
         add(form_home, "Form_Home");  
-//           add(tableManager, "TableManager");  
-//        add(addProduct, "AddProduct");
+           add(tableManager, "TableManager");  
+        add(addProduct, "AddProduct");
 //         add(revenuePanel, "RevenuePanel");
-//           add(addEmployee, "AddEmployee");
-//            add(billPanel, "BillPanel");
+           add(addEmployee, "AddEmployee");
+//              add(billPanel, "BillPanel");
+              add(addMaterial,"AddMaterial");
+  
    
      
         
@@ -52,9 +58,9 @@ public class Body extends JPanel {
         return form_home;
     }
 
-//    public AddProduct getAddProduct() {
-//        return addProduct;
-//    }
+    public AddProduct getAddProduct() {
+        return addProduct;
+    }
 
 
     @SuppressWarnings("unchecked")

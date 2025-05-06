@@ -35,10 +35,13 @@ import net.miginfocom.swing.MigLayout;
 import Service.ServiceUser;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import Component.Menu;
 
 public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
 
     private ActionListener forgetPasswordListener;
+    private Menu menu;
+    private ServiceUser serviceUser;
 
     public ModelLogin getDataLogin() {
         return dataLogin;
@@ -52,11 +55,13 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
     private ModelLogin dataLogin;
 
     public PanelLoginAndRegister(ActionListener eventRegister, ActionListener eventLogin) {
+        this.menu = new Menu();
         initComponents();
         initRegister(eventRegister);
         initLogin(eventLogin);
         login.setVisible(false);
         register.setVisible(true);
+        
     }
 
     private void initRegister(ActionListener eventRegister) {
@@ -190,10 +195,12 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
         cmd.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
+                
                
                 String email = txtEmail.getText().trim();
                 String password = String.valueOf(txtPass.getPassword());
-                dataLogin = new ModelLogin(email, password);
+                dataLogin = new ModelLogin(email, password);         
+//                  menu.set(email);
             }
         });
     }
@@ -319,5 +326,8 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
     public void addForgetPasswordEvent(ActionListener listener) {
         this.forgetPasswordListener = listener;
     }
+    public void setMenu(Menu menu) {
+    this.menu = menu;
+}
 
 }

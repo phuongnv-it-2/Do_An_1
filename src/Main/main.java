@@ -1,5 +1,6 @@
 package Main;
 
+import Component.Menu;
 import Component.Message;
 
 import java.sql.PreparedStatement;
@@ -30,7 +31,6 @@ import org.jdesktop.animation.timing.Animator;
 import org.jdesktop.animation.timing.TimingTarget;
 import org.jdesktop.animation.timing.TimingTargetAdapter;
 import Service.AESUtil;
-import view.page.RestaurantManager;
 import view.page.TableManager;
 
 public class main extends javax.swing.JFrame {
@@ -82,6 +82,8 @@ public class main extends javax.swing.JFrame {
             }
         };
         loginAndRegister = new PanelLoginAndRegister(eventRegister, eventLogin);
+        Menu menu = new Menu();
+        loginAndRegister.setMenu(menu);
         loginAndRegister.addForgetPasswordEvent(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
@@ -89,7 +91,7 @@ public class main extends javax.swing.JFrame {
             }
         });
 
-         target = new TimingTargetAdapter() {
+        target = new TimingTargetAdapter() {
             @Override
             public void timingEvent(float fraction) {
                 double fractionCover;
@@ -132,7 +134,7 @@ public class main extends javax.swing.JFrame {
                 isLogin = !isLogin;
             }
         };
-         animator = new Animator(800, target);
+        animator = new Animator(800, target);
         animator.setAcceleration(0.5f);
         animator.setDeceleration(0.5f);
         animator.setResolution(0);
@@ -156,7 +158,7 @@ public class main extends javax.swing.JFrame {
                 startAnimation();
             }
         });
-   
+
         verifyCode.addEventButtonOK(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
@@ -206,34 +208,34 @@ public class main extends javax.swing.JFrame {
                 }
             }
         });
-       panelPassword.addEventButtonOK(new ActionListener() {
-    @Override
-    public void actionPerformed(ActionEvent ae) {
-        try {
-            ModelUser user = panelForgetPassword.getUser();
-            String newPassword = panelPassword.getInputPass1(); 
-            String encryptPassword=AESUtil.encrypt(newPassword);
-           
-            String confirmPassword = panelPassword.getInputPass2(); 
+        panelPassword.addEventButtonOK(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                try {
+                    ModelUser user = panelForgetPassword.getUser();
+                    String newPassword = panelPassword.getInputPass1();
+                    String encryptPassword = AESUtil.encrypt(newPassword);
 
-            if (newPassword.equals(confirmPassword)) {
-                service.updatePasswordByUserName(user.getUserName(), encryptPassword);
-                showMessage(Message.MessageType.SUCCESS, "Password updated successfully!");
-                panelPassword.setVisible(false);
-            } else {
-                showMessage(Message.MessageType.ERROR, "Passwords do not match!");
+                    String confirmPassword = panelPassword.getInputPass2();
+
+                    if (newPassword.equals(confirmPassword)) {
+                        service.updatePasswordByUserName(user.getUserName(), encryptPassword);
+                        showMessage(Message.MessageType.SUCCESS, "Password updated successfully!");
+                        panelPassword.setVisible(false);
+                    } else {
+                        showMessage(Message.MessageType.ERROR, "Passwords do not match!");
+                    }
+                } catch (SQLException e) {
+                    showMessage(Message.MessageType.ERROR, "Error updating password: " + e.getMessage());
+                }
             }
-        } catch (SQLException e) {
-            showMessage(Message.MessageType.ERROR, "Error updating password: " + e.getMessage());
-        }
-    }
-});
-      cover.addEventButtonOK(new ActionListener() {
-    @Override
-    public void actionPerformed(ActionEvent ae) {
-        
-    }
-});
+        });
+        cover.addEventButtonOK(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+
+            }
+        });
 
     }
 
@@ -274,7 +276,6 @@ public class main extends javax.swing.JFrame {
                 service.insertUser(user);
                 startAnimation();
                 showMessage(Message.MessageType.SUCCESS, "Đăng ký thành công!");
-             
 
             }
         } catch (SQLException e) {
@@ -317,7 +318,7 @@ public class main extends javax.swing.JFrame {
             ModelUser user = service.login(data);
             if (user != null) {
                 this.dispose();
-                Main1 a= new Main1();
+                SystemMain a = new SystemMain();
                 a.setVisible(true);
 
             } else {
@@ -400,13 +401,12 @@ public class main extends javax.swing.JFrame {
             }
         }).start();
     }
-public void startAnimation() {
-    if (animator != null && !animator.isRunning()) {
-        animator.start();
+
+    public void startAnimation() {
+        if (animator != null && !animator.isRunning()) {
+            animator.start();
+        }
     }
-}
-
-
 
     public PanelLoading getLoadingPanel() {
         return loading;

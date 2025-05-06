@@ -25,7 +25,7 @@ public class AddProduct extends JPanel {
 
     private ArrayList<ModelProducts> list = new ArrayList<>();
     private ModelProducts products;
-    private int index = -1; // Chỉ số mặc định là -1 vì chưa chọn sản phẩm
+    private int index = -1; 
 
     private JLabel jLabel2, jLabel3, jLabel4, jLabel5, jLabel6, jLabel7;
     private Button JbtSua, JbtThem, JbtXoa, JbtLuu, JbtHuy;
