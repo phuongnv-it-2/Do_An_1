@@ -4,22 +4,33 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/E:/NetBean/NetBeans-25/Do_AN/src/Main/SystemMain.java</file>
-            <file>file:/E:/NetBean/NetBeans-25/Do_AN/src/view/page/Body.java</file>
-            <file>file:/E:/NetBean/NetBeans-25/Do_AN/src/view/page/BillPanel.java</file>
-            <file>file:/E:/NetBean/NetBeans-25/Do_AN/src/Main/main.java</file>
             <file>file:/E:/NetBean/NetBeans-25/Do_AN/src/view/page/Form_Home.java</file>
-            <file>file:/E:/NetBean/NetBeans-25/Do_AN/src/Swing/ModernScrollBarUI.java</file>
+            <file>file:/E:/NetBean/NetBeans-25/Do_AN/src/Component/Menu.java</file>
+            <file>file:/E:/NetBean/NetBeans-25/Do_AN/src/Component/Message.java</file>
+            <file>file:/E:/NetBean/NetBeans-25/Do_AN/src/Swing/ListMenu.java</file>
+            <file>file:/E:/NetBean/NetBeans-25/Do_AN/src/view/page/RevenuePanel.java</file>
+            <file>file:/E:/NetBean/NetBeans-25/Do_AN/src/Service/ServiceUser.java</file>
+            <file>file:/E:/NetBean/NetBeans-25/Do_AN/src/controller/RevenueController.java</file>
+            <file>file:/E:/NetBean/NetBeans-25/Do_AN/src/Component/PanelLoginAndRegister.java</file>
+            <file>file:/E:/NetBean/NetBeans-25/Do_AN/src/Main/main.java</file>
+            <file>file:/E:/NetBean/NetBeans-25/Do_AN/src/Service/ImageAvatar.java</file>
+            <file>file:/E:/NetBean/NetBeans-25/Do_AN/src/Service/ImageRenderer.java</file>
+            <file>file:/E:/NetBean/NetBeans-25/Do_AN/src/model/Bill.java</file>
+            <file>file:/E:/NetBean/NetBeans-25/Do_AN/src/model/ModelBill.java</file>
+            <file>file:/E:/NetBean/NetBeans-25/Do_AN/src/model/ModelEmployee.java</file>
+            <file>file:/E:/NetBean/NetBeans-25/Do_AN/src/view/page/AddEmployee.java</file>
+            <file>file:/E:/NetBean/NetBeans-25/Do_AN/src/Swing/TextArea.java</file>
             <file>file:/E:/NetBean/NetBeans-25/Do_AN/src/Swing/ScrollBar.java</file>
-            <file>file:/E:/NetBean/NetBeans-25/Do_AN/src/Service/CardService.java</file>
-            <file>file:/E:/NetBean/NetBeans-25/Do_AN/src/Component/CardDescription.java</file>
-            <file>file:/E:/NetBean/NetBeans-25/Do_AN/src/Component/Card.java</file>
-            <file>file:/E:/NetBean/NetBeans-25/Do_AN/src/model/NguyenLieu.java</file>
-            <file>file:/E:/NetBean/NetBeans-25/Do_AN/src/Component/CardDescriptionMaterial.java</file>
-            <file>file:/E:/NetBean/NetBeans-25/Do_AN/src/Component/CardMaterial.java</file>
-            <file>file:/E:/NetBean/NetBeans-25/Do_AN/src/view/page/Form_Home_Material.java</file>
-            <file>file:/E:/NetBean/NetBeans-25/Do_AN/src/Service/MaterialService.java</file>
-            <file>file:/E:/NetBean/NetBeans-25/Do_AN/src/view/page/AddProduct.java</file>
-            <file>file:/E:/NetBean/NetBeans-25/Do_AN/src/view/page/AddMaterial.java</file>
+            <file>file:/E:/NetBean/NetBeans-25/Do_AN/src/Swing/PanelRound.java</file>
+            <file>file:/E:/NetBean/NetBeans-25/Do_AN/src/Swing/PanelBorder.java</file>
+            <file>file:/E:/NetBean/NetBeans-25/Do_AN/src/Event/EventMenuCallBack.java</file>
+            <file>file:/E:/NetBean/NetBeans-25/Do_AN/src/Event/EventMenu.java</file>
+            <file>file:/E:/NetBean/NetBeans-25/Do_AN/src/Event/EventMenuSelected.java</file>
+            <file>file:/E:/NetBean/NetBeans-25/Do_AN/src/Database/JDBCuntil.java</file>
+            <file>file:/E:/NetBean/NetBeans-25/Do_AN/src/Database/RevenueDao.java</file>
+            <file>file:/E:/NetBean/NetBeans-25/Do_AN/src/Swing/ButtonOutLine.java</file>
+            <file>file:/E:/NetBean/NetBeans-25/Do_AN/src/Swing/Button.java</file>
+            <file>file:/E:/NetBean/NetBeans-25/Do_AN/src/Swing/MenuItem.java</file>
         </group>
     </open-files>
 </project-private>

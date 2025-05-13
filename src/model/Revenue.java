@@ -4,19 +4,26 @@ import java.util.Date;
 
 public class Revenue {
     private int month; 
+    private int dayOfWeek; 
     private double revenue;
     private Date ngayMua;
 
-    public Revenue(int month, double revenue) {
-        this.month = month;
+    public Revenue(int timeUnit, double revenue, boolean isMonth) {
+        if (isMonth) {
+            this.month = timeUnit;
+        } else {
+            this.dayOfWeek = timeUnit;
+        }
         this.revenue = revenue;
-    } 
-      public Revenue(Date ngayMua, double revenue) {
+    }
+
+    public Revenue(Date ngayMua, double revenue) {
         this.ngayMua = ngayMua;
         this.revenue = revenue;
     }
 
-public Date getNgayMua() {
+
+    public Date getNgayMua() {
         return ngayMua;
     }
 
@@ -30,6 +37,14 @@ public Date getNgayMua() {
 
     public void setMonth(int month) {
         this.month = month;
+    }
+
+    public int getDayOfWeek() {
+        return dayOfWeek;
+    }
+
+    public void setDayOfWeek(int dayOfWeek) {
+        this.dayOfWeek = dayOfWeek;
     }
 
     public double getRevenue() {

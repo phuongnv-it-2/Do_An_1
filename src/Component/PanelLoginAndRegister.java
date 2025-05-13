@@ -61,7 +61,7 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
         initLogin(eventLogin);
         login.setVisible(false);
         register.setVisible(true);
-        
+        serviceUser = new ServiceUser();
     }
 
     private void initRegister(ActionListener eventRegister) {
@@ -78,36 +78,36 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
         txtEmail.setPrefixIcon(new ImageIcon(getClass().getResource("/icon/mail.png")));
         txtEmail.setHint("Email");
         register.add(txtEmail, "w 70%, h 50");
-       javax.swing.JPanel passwordPanel = new javax.swing.JPanel();
-    passwordPanel.setLayout(new MigLayout("insets 0", "[grow]5[]", "[]"));
-    passwordPanel.setOpaque(false);
+        javax.swing.JPanel passwordPanel = new javax.swing.JPanel();
+        passwordPanel.setLayout(new MigLayout("insets 0", "[grow]5[]", "[]"));
+        passwordPanel.setOpaque(false);
 
-    MyPasswordField txtPass = new MyPasswordField();
-    txtPass.setPrefixIcon(new ImageIcon(getClass().getResource("/icon/pass.png")));
-    txtPass.setHint("Password");
-    passwordPanel.add(txtPass, "grow, w 90%, h 50"); // Cố định chiều cao
+        MyPasswordField txtPass = new MyPasswordField();
+        txtPass.setPrefixIcon(new ImageIcon(getClass().getResource("/icon/pass.png")));
+        txtPass.setHint("Password");
+        passwordPanel.add(txtPass, "grow, w 90%, h 50"); // Cố định chiều cao
 
-    JLabel eyeLabel = new JLabel();
-    ImageIcon eyeClosedIcon = new ImageIcon(getClass().getResource("/icon/eye_closed.png"));
-    ImageIcon eyeOpenIcon = new ImageIcon(getClass().getResource("/icon/eye_open.png"));
-    eyeLabel.setIcon(eyeClosedIcon);
-    eyeLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
-    boolean[] isPasswordVisible = {false}; 
-    eyeLabel.addMouseListener(new MouseAdapter() {
-        @Override
-        public void mouseClicked(MouseEvent e) {
-            isPasswordVisible[0] = !isPasswordVisible[0];
-            if (isPasswordVisible[0]) {
-                txtPass.setEchoChar((char) 0);
-                eyeLabel.setIcon(eyeOpenIcon);
-            } else {
-                txtPass.setEchoChar('•'); 
-                eyeLabel.setIcon(eyeClosedIcon);
+        JLabel eyeLabel = new JLabel();
+        ImageIcon eyeClosedIcon = new ImageIcon(getClass().getResource("/icon/eye_closed.png"));
+        ImageIcon eyeOpenIcon = new ImageIcon(getClass().getResource("/icon/eye_open.png"));
+        eyeLabel.setIcon(eyeClosedIcon);
+        eyeLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        boolean[] isPasswordVisible = {false};
+        eyeLabel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                isPasswordVisible[0] = !isPasswordVisible[0];
+                if (isPasswordVisible[0]) {
+                    txtPass.setEchoChar((char) 0);
+                    eyeLabel.setIcon(eyeOpenIcon);
+                } else {
+                    txtPass.setEchoChar('•');
+                    eyeLabel.setIcon(eyeClosedIcon);
+                }
             }
-        }
-    });
-    passwordPanel.add(eyeLabel, "w 10, h 10");
-    register.add(passwordPanel, "w 70%");
+        });
+        passwordPanel.add(eyeLabel, "w 10, h 10");
+        register.add(passwordPanel, "w 70%");
         Button cmd = new Button();
         cmd.setBackground(new Color(7, 164, 121));
         cmd.setForeground(new Color(250, 250, 250));
@@ -141,7 +141,7 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
         txtPass.setHint("Password");
         login.add(txtPass, "w 60%, h 50");
 
-        login.remove(txtPass); 
+        login.remove(txtPass);
 
         javax.swing.JPanel passwordPanel = new javax.swing.JPanel();
         passwordPanel.setLayout(new MigLayout("insets 0", "[grow]5[]", "[]"));
@@ -195,11 +195,17 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
         cmd.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                
-               
+
                 String email = txtEmail.getText().trim();
                 String password = String.valueOf(txtPass.getPassword());
-                dataLogin = new ModelLogin(email, password);         
+                String Name = serviceUser.getUsernameByEmail(email);
+                menu.getLbUserName().setText(Name);
+                String AvatarPath = serviceUser.getImagePathByEmail(email);
+                Menu mainForm = new Menu();
+                mainForm.setUserEmail(email);
+
+//                    menu.getImageAvatar().setImage(AvatarPath);
+                dataLogin = new ModelLogin(email, password);
 //                  menu.set(email);
             }
         });
@@ -326,8 +332,9 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
     public void addForgetPasswordEvent(ActionListener listener) {
         this.forgetPasswordListener = listener;
     }
+
     public void setMenu(Menu menu) {
-    this.menu = menu;
-}
+        this.menu = menu;
+    }
 
 }

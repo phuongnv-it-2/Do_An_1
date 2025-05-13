@@ -1,56 +1,47 @@
-
 package view.page;
 
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 
-
 public class Body extends JPanel {
 
     private final CardLayout CardLayout;
-    private final Form_Home form_home ;
-        private final TableManager  tableManager ;
+    private final Form_Home form_home;
+    private final TableManager tableManager;
 
-//      private  RevenuePanel revenuePanel;
-     private  AddEmployee addEmployee;
-     private AddProduct addProduct;
+    private RevenuePanel revenuePanel;
+    private AddEmployee addEmployee;
+    private AddProduct addProduct;
 //     private BillPanel billPanel;
-     private Form_Home_Material form_Home_Material;
-          private AddMaterial addMaterial;
-
-       
+    private Form_Home_Material form_Home_Material;
+    private AddMaterial addMaterial;
 
     public Body() {
         initComponents();
-  
+
         CardLayout = new CardLayout();
         setLayout(CardLayout);
-        
-      
-       form_home = new Form_Home();  
-       tableManager =new TableManager();
-       addEmployee = new AddEmployee();
-       addProduct= new AddProduct();
-//       billPanel = new BillPanel();
-       form_Home_Material= new Form_Home_Material();
-               addMaterial=new AddMaterial();
-               
 
+        form_home = new Form_Home();
+        tableManager = new TableManager();
+        addEmployee = new AddEmployee();
+        addProduct = new AddProduct();
+       revenuePanel = new RevenuePanel();
+        form_Home_Material = new Form_Home_Material();
+        addMaterial = new AddMaterial();
 
-  add(form_Home_Material, "Form_Home_Material");  
-        add(form_home, "Form_Home");  
-           add(tableManager, "TableManager");  
+        add(form_Home_Material, "Form_Home_Material");
+        add(form_home, "Form_Home");
+        add(tableManager, "TableManager");
         add(addProduct, "AddProduct");
-//         add(revenuePanel, "RevenuePanel");
-           add(addEmployee, "AddEmployee");
+         add(revenuePanel, "RevenuePanel");
+        add(addEmployee, "AddEmployee");
 //              add(billPanel, "BillPanel");
-              add(addMaterial,"AddMaterial");
-  
-   
-     
-        
+        add(addMaterial, "AddMaterial");
+
     }
-     public CardLayout getCardLayout() {
+
+    public CardLayout getCardLayout() {
         return CardLayout;
     }
 
@@ -61,7 +52,6 @@ public class Body extends JPanel {
     public AddProduct getAddProduct() {
         return addProduct;
     }
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

@@ -54,8 +54,8 @@ public class AddEmployee extends JPanel {
         leftPanel.setPreferredSize(new Dimension(450, 842));
         leftPanel.setBackground(new Color(62, 167, 136));
 
-        lblManv = new JLabel("Mã NV:");
-        lblTennv = new JLabel("Tên NV:");
+        lblManv = new JLabel("Mã Nhân Viên:");
+        lblTennv = new JLabel("Tên Nhân Viên:");
         lblGioiTinh = new JLabel("Giới Tính:");
         lblSdt = new JLabel("SĐT:");
         lblDiachi = new JLabel("Địa Chỉ:");
@@ -214,7 +214,7 @@ public class AddEmployee extends JPanel {
         JPanel infoPanel = new JPanel(new MigLayout("wrap", "[grow]", "[]10[]10[]"));
         infoPanel.setBackground(new Color(62, 167, 136));
 
-        lblDisplayTennv = new JLabel("Tên NV: ");
+        lblDisplayTennv = new JLabel("Tên Nhân Viên: ");
         lblDisplayTennv.setFont(new Font("Segoe UI", Font.BOLD, 20));
         lblDisplayTennv.setForeground(Color.BLACK);
 

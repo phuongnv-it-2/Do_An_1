@@ -311,7 +311,7 @@ public boolean checkDuplicateEmail(String user) throws SQLException {
             imageAvatar.setImage(image);
             imageAvatar.repaint(); // Gọi repaint để hiển thị ảnh mới
 
-            System.out.println("Đã đặt ảnh vào ImageAvatar, kích thước: " + imageAvatar.getWidth() + "x" + imageAvatar.getHeight());
+//            System.out.println("Đã đặt ảnh vào ImageAvatar, kích thước: " + imageAvatar.getWidth() + "x" + imageAvatar.getHeight());
         } else {
             System.out.println("Không có ảnh hợp lệ để hiển thị trong ImageAvatar!");
         }
@@ -320,7 +320,7 @@ public boolean checkDuplicateEmail(String user) throws SQLException {
         setDefaultImage();
     }
 }
-private void setDefaultImage() {
+public void setDefaultImage() {
     try {
         InputStream defaultImageStream = getClass().getResourceAsStream("/icon/user.png");
         if (defaultImageStream != null) {
@@ -337,6 +337,38 @@ private void setDefaultImage() {
         ex.printStackTrace();
     }
 }
+
+public String getUsernameByEmail(String email) {
+    String username = "";
+    try (Connection conn = JDBCuntil.getconection();
+         PreparedStatement stmt = conn.prepareStatement("SELECT UserName FROM account WHERE Email = ?")) {
+        stmt.setString(1, email);  
+        ResultSet rs = stmt.executeQuery();
+        if (rs.next()) {
+            username = rs.getString("UserName");  
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return username;
+}
+
+public String getImagePathByEmail(String email) {
+    String path = "";
+    try (Connection conn = JDBCuntil.getconection();
+         PreparedStatement stmt = conn.prepareStatement("SELECT AvatarPath FROM account WHERE Email = ?")) {
+        stmt.setString(1, email);
+        ResultSet rs = stmt.executeQuery();
+        if (rs.next()) {
+            path = rs.getString("AvatarPath");
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return path;
+}
+
+
 
 }
 

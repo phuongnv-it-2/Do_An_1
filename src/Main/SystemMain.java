@@ -15,6 +15,7 @@ import view.page.TableManager;
 import Component.Menu;
 import Event.EventMenu;
 import view.page.BillPanel;
+import view.page.RevenuePanel;
 
 public class SystemMain extends javax.swing.JFrame {
 
@@ -23,6 +24,7 @@ public class SystemMain extends javax.swing.JFrame {
     private Body body;
     private CardLayout cardLayout;
     private Service service;
+
 //    private BillPanel billPanel;
 
     public SystemMain() {
@@ -34,6 +36,7 @@ public class SystemMain extends javax.swing.JFrame {
         contentPane.setLayout(new MigLayout("fillx, filly", "0[300!]0[fill]0", "0[fill]0"));
         body = new Body();
         menu = new Menu();
+
 //        billPanel=new BillPanel();
       menu.addEventMenu(new EventMenu() {
             @Override
@@ -71,9 +74,12 @@ public class SystemMain extends javax.swing.JFrame {
                         reset();
                         break;
                     case 6: 
-                        cardLayout.show(body, "Form_Home");
+                        cardLayout.show(body, "RevenuePanel");
                         break;
                     case 7: 
+                        cardLayout.show(body, "Form_Home");
+                        break;
+                          case 8: 
                         cardLayout.show(body, "Form_Home");
                         break;
                     default:

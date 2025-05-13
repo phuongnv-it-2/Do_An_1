@@ -3,6 +3,7 @@ package Component;
 import Event.EventMenu;
 import Event.EventMenuCallBack;
 import Event.EventMenuSelected;
+import Service.ImageAvatar;
 import Service.ServiceUser;
 import java.awt.Color;
 import java.awt.GradientPaint;
@@ -21,9 +22,12 @@ import Swing.ListMenu;
 import java.awt.Dimension;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import javax.imageio.ImageIO;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import model.Model_Menu;
 
 public class Menu extends javax.swing.JPanel {
@@ -31,7 +35,7 @@ public class Menu extends javax.swing.JPanel {
     public void addEventMenu(EventMenu event) {
         this.event = event;
     }
-
+private String userEmail;
     private int selectedIndex = -1;
     private final Timer timer;
     private boolean toUp;
@@ -59,6 +63,7 @@ public class Menu extends javax.swing.JPanel {
         listMenu.setOpaque(false);
         setOpaque(false);
         setPreferredSize(new Dimension(276, 669));
+
         System.out.println("imageAvatar is visible: " + imageAvatar.isVisible());
         System.out.println("imageAvatar size after init: " + imageAvatar.getWidth() + "x" + imageAvatar.getHeight());
         System.out.println("Menu is visible: " + this.isVisible());
@@ -127,6 +132,7 @@ public class Menu extends javax.swing.JPanel {
         });
         initData();
         startColorAnimation();
+  
     }
 
     private void startColorAnimation() {
@@ -184,10 +190,9 @@ public class Menu extends javax.swing.JPanel {
         listMenu.addItem(new Model_Menu("4", "Dish Management ", Model_Menu.MenuType.MENU));
         listMenu.addItem(new Model_Menu("5", "Table Management", Model_Menu.MenuType.MENU));
         listMenu.addItem(new Model_Menu("6", "Employee Management", Model_Menu.MenuType.MENU));
-//        listMenu.addItem(new Model_Menu("7", "Setting", Model_Menu.MenuType.MENU));
-//        listMenu.addItem(new Model_Menu("8", "Extra", Model_Menu.MenuType.MENU));
-        listMenu.addItem(new Model_Menu("7", "Message", Model_Menu.MenuType.MENU));
-        listMenu.addItem(new Model_Menu("8", "Setting", Model_Menu.MenuType.MENU));
+        listMenu.addItem(new Model_Menu("7", "Revenue", Model_Menu.MenuType.MENU));
+        listMenu.addItem(new Model_Menu("8", "Message", Model_Menu.MenuType.MENU));
+                listMenu.addItem(new Model_Menu("9", "Setting", Model_Menu.MenuType.MENU));
         listMenu.addItem(new Model_Menu("", "", Model_Menu.MenuType.EMPTY));
     }
 
@@ -200,7 +205,7 @@ public class Menu extends javax.swing.JPanel {
         g2.fillRoundRect(0, 0, getWidth(), getHeight(), 20, 20);
         if (selectedIndex >= 0) {
             int menuX = 10;
-            int height = 50;
+            int height =50; // do cao cac dong menu
             int width = getWidth();
             g2.setColor(new Color(242, 242, 242));
             g2.fillRoundRect(menuX, menuY, width, height, 35, 35);
@@ -219,10 +224,24 @@ public class Menu extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        lbUsername = new javax.swing.JLabel();
+        imageAvatar = new Service.ImageAvatar();
         panelMoving = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         listMenu = new Swing.ListMenu<>();
-        imageAvatar = new Service.ImageAvatar();
+
+        lbUsername.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+
+        javax.swing.GroupLayout imageAvatarLayout = new javax.swing.GroupLayout(imageAvatar);
+        imageAvatar.setLayout(imageAvatarLayout);
+        imageAvatarLayout.setHorizontalGroup(
+            imageAvatarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 135, Short.MAX_VALUE)
+        );
+        imageAvatarLayout.setVerticalGroup(
+            imageAvatarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 112, Short.MAX_VALUE)
+        );
 
         panelMoving.setOpaque(false);
 
@@ -264,7 +283,11 @@ public class Menu extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(78, 78, 78)
                 .addComponent(imageAvatar, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(78, 78, 78))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lbUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -272,9 +295,10 @@ public class Menu extends javax.swing.JPanel {
                 .addComponent(panelMoving, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(imageAvatar, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(listMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 445, Short.MAX_VALUE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addComponent(lbUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(listMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 505, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
 private int x;
@@ -297,12 +321,85 @@ private int x;
         });
 
     }
+ public void setImageAvatarFromAccount(String email) {
+    BufferedImage img = null;
+    String avatarPath = serviceUser.getImagePathByEmail(email); 
+
+    try {
+        if (avatarPath != null && !avatarPath.isEmpty()) {
+            File file = new File(avatarPath);
+            if (file.exists()) {
+                img = ImageIO.read(file);
+                System.out.println("Đã tải ảnh đại diện từ file: " + avatarPath);
+            } else {
+                System.out.println("File ảnh không tồn tại: " + avatarPath);
+            }
+        } else {
+            System.out.println("Không có đường dẫn ảnh trong CSDL.");
+        }
+
+        // Nếu không có ảnh, tải ảnh mặc định
+        if (img == null) {
+            InputStream defaultImageStream = getClass().getResourceAsStream("/icon/user.png");
+            if (defaultImageStream != null) {
+                img = ImageIO.read(defaultImageStream);
+                System.out.println("Đã tải ảnh mặc định.");
+            } else {
+                System.out.println("Không tìm thấy ảnh mặc định.");
+            }
+        }
+
+        // Set ảnh vào imageAvatar nếu ảnh hợp lệ
+        if (img != null) {
+            imageAvatar.setImage(img);
+            imageAvatar.revalidate(); // Kiểm tra lại kích thước và cấu trúc
+            imageAvatar.repaint(); // Vẽ lại ảnh
+        } else {
+            System.out.println("Không có ảnh hợp lệ để đặt vào ImageAvatar.");
+        }
+
+    } catch (IOException e) {
+        JOptionPane.showMessageDialog(null, "Lỗi khi tải ảnh từ đường dẫn: " + e.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
+        // Nếu có lỗi trong quá trình tải ảnh, bạn có thể đặt ảnh mặc định tại đây:
+        setDefaultImage();
+    }
+}
+
+private void setDefaultImage() {
+    try {
+        InputStream defaultImageStream = getClass().getResourceAsStream("/icon/user.png");
+        if (defaultImageStream != null) {
+            BufferedImage defaultImage = ImageIO.read(defaultImageStream);
+            imageAvatar.setImage(defaultImage);
+            imageAvatar.repaint();
+            System.out.println("Đã đặt ảnh mặc định vào ImageAvatar");
+        } else {
+            System.out.println("Không tìm thấy ảnh mặc định để đặt!");
+        }
+    } catch (IOException ex) {
+        System.out.println("Lỗi khi tải ảnh mặc định: " + ex.getMessage());
+    }
+}
+
+
+    public void setUserEmail(String email) {
+    this.userEmail = email;
+    setImageAvatarFromAccount(email);
+}
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private Service.ImageAvatar imageAvatar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel lbUsername;
     private Swing.ListMenu<String> listMenu;
     private javax.swing.JPanel panelMoving;
     // End of variables declaration//GEN-END:variables
+public JLabel getLbUserName(){
+    return lbUsername;
+}
+public ImageAvatar getImageAvatar(){
+    return imageAvatar;
+}
 
 }
