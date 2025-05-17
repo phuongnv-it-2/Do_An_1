@@ -31,6 +31,7 @@ import org.jdesktop.animation.timing.Animator;
 import org.jdesktop.animation.timing.TimingTarget;
 import org.jdesktop.animation.timing.TimingTargetAdapter;
 import Service.AESUtil;
+import view.page.Body;
 import view.page.TableManager;
 
 public class main extends javax.swing.JFrame {
@@ -46,7 +47,7 @@ public class main extends javax.swing.JFrame {
     private Animator animator;
     private TimingTarget target;
     private AESUtil AESUtil;
-
+    private Body body;
     private boolean isLogin;
     private PanelPassword panelPassword;
 
@@ -55,6 +56,7 @@ public class main extends javax.swing.JFrame {
     private final double loginSize = 60;
 
     public main() {
+        
         initComponents();
         init();
     }
@@ -414,6 +416,10 @@ public class main extends javax.swing.JFrame {
 
     public PanelVerifyCode getVerifyCodePanel() {
         return verifyCode;
+    }
+
+    public Body getBody() {
+        return body;
     }
 
     @SuppressWarnings("unchecked")

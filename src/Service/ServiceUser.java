@@ -262,7 +262,7 @@ public boolean checkDuplicateEmail(String user) throws SQLException {
     }
     return false;
 }
-   public byte[] getUserImageFromDatabase(String email) {
+  public byte[] getUserImageFromDatabase(String email) {
     byte[] imageData = null;
     try {
         String sql = "SELECT AvatarPath FROM account WHERE email = ?";

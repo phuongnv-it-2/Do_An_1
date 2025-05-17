@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -11,6 +11,7 @@
     <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
     <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,2,-6,0,0,1,20"/>
   </AuxValues>
 
   <Layout>
@@ -54,8 +55,15 @@
           <Font name="Segoe UI" size="16" style="1"/>
         </Property>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="lbUsername.setPreferredSize(new Dimension(192, 31)); // C&#x1ed1; &#x111;&#x1ecb;nh k&#xed;ch th&#x1b0;&#x1edb;c&#xa;lbUsername.setMinimumSize(new Dimension(192, 31));&#xa;lbUsername.setMaximumSize(new Dimension(192, 31));"/>
+      </AuxValues>
     </Component>
     <Container class="Service.ImageAvatar" name="imageAvatar">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="imageAvatar.setPreferredSize(new Dimension(192, 31)); // C&#x1ed1; &#x111;&#x1ecb;nh k&#xed;ch th&#x1b0;&#x1edb;c&#xa;imageAvatar.setMinimumSize(new Dimension(192, 31));&#xa;imageAvatar.setMaximumSize(new Dimension(192, 31));"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new Service.ImageAvatar()"/>
+      </AuxValues>
 
       <Layout>
         <DimensionLayout dim="0">

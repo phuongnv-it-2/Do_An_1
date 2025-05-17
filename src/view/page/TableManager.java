@@ -137,7 +137,7 @@ public class TableManager extends JPanel implements OrderPanel.OrderListener {
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         leftPanel.add(scrollPane, BorderLayout.CENTER);
 
-        add(leftPanel, "cell 0 0, grow");
+        add(leftPanel, "cell 0 0, grow");   
         add(infoPanel, "cell 1 0, grow");
     }
 

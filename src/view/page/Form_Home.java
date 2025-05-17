@@ -39,6 +39,17 @@ public class Form_Home extends javax.swing.JPanel {
       panel.revalidate();
         panel.repaint();
     }
+        void reloadProducts() {
+        panel.removeAll(); 
+          List<Model_Card> cards = cardService.getAllCards();
+        for (Model_Card card : cards) {
+            Card productCard = new Card(card);
+            panel.add(productCard);
+        }
+      panel.revalidate();
+        panel.repaint();
+            System.out.println("view.page.Form_Home.reloadProducts()");
+    }
   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

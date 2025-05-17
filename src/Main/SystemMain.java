@@ -31,6 +31,7 @@ public class SystemMain extends javax.swing.JFrame {
         initComponents();
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setTitle("Violet Resturant");
+        setSize(800, 600);
 
         contentPane = new JPanel();
         contentPane.setLayout(new MigLayout("fillx, filly", "0[300!]0[fill]0", "0[fill]0"));

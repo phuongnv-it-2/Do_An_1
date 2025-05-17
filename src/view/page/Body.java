@@ -1,5 +1,6 @@
 package view.page;
 
+import Component.Menu;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 
@@ -15,6 +16,7 @@ public class Body extends JPanel {
 //     private BillPanel billPanel;
     private Form_Home_Material form_Home_Material;
     private AddMaterial addMaterial;
+    private Menu menu;
 
     public Body() {
         initComponents();
@@ -29,6 +31,7 @@ public class Body extends JPanel {
        revenuePanel = new RevenuePanel();
         form_Home_Material = new Form_Home_Material();
         addMaterial = new AddMaterial();
+          menu = new Menu();
 
         add(form_Home_Material, "Form_Home_Material");
         add(form_home, "Form_Home");
@@ -48,10 +51,16 @@ public class Body extends JPanel {
     public Form_Home getForm_Home() {
         return form_home;
     }
-
+ public Form_Home_Material getForm_Home_Material() {
+        return form_Home_Material;
+    }
     public AddProduct getAddProduct() {
         return addProduct;
     }
+       public Menu getMenu() {
+        return menu;
+    }
+
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

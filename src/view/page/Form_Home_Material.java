@@ -39,6 +39,17 @@ public class Form_Home_Material extends javax.swing.JPanel {
         panel.revalidate();
         panel.repaint();
     }
+      void reloadMaterials() {
+        panel.removeAll(); 
+        List<NguyenLieu> materials = materialService.getAllMaterials();
+        for (NguyenLieu material : materials) {
+            CardMaterial materialCard = new CardMaterial(material);
+            panel.add(materialCard);
+        }
+        panel.revalidate();
+        panel.repaint();
+            System.out.println("view.page.Form_Home.reloadProducts()");
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

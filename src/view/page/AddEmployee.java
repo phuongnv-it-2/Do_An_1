@@ -52,18 +52,28 @@ public class AddEmployee extends JPanel {
 
         JPanel leftPanel = new JPanel(new MigLayout("fill", "[grow,fill]", "[]10[]10[]10[]10[]10[]10[]10[]10[]10[]10[]"));
         leftPanel.setPreferredSize(new Dimension(450, 842));
-        leftPanel.setBackground(new Color(62, 167, 136));
+        leftPanel.setBackground(new Color(206, 157, 255));
 
         lblManv = new JLabel("Mã Nhân Viên:");
+        lblManv.setForeground(new Color(255, 255, 255));
         lblTennv = new JLabel("Tên Nhân Viên:");
+        lblTennv.setForeground(new Color(255, 255, 255));
         lblGioiTinh = new JLabel("Giới Tính:");
+        lblGioiTinh.setForeground(new Color(255, 255, 255));
         lblSdt = new JLabel("SĐT:");
+        lblSdt.setForeground(new Color(255, 255, 255));
         lblDiachi = new JLabel("Địa Chỉ:");
+        lblDiachi.setForeground(new Color(255, 255, 255));
         lblEmail = new JLabel("Email:");
+        lblEmail.setForeground(new Color(255, 255, 255));
         lblNgaySinh = new JLabel("Ngày Sinh:");
+        lblNgaySinh.setForeground(new Color(255, 255, 255));
         lblAnh = new JLabel("Ảnh:");
+        lblAnh.setForeground(new Color(255, 255, 255));
         lblLuong = new JLabel("Lương:");
+        lblLuong.setForeground(new Color(255, 255, 255));
         lblChucVu = new JLabel("Chức Vụ:");
+        lblChucVu.setForeground(new Color(255, 255, 255));
 
         txtManv = new MyTextField();
         txtManv.setHint("Mã tự động");
@@ -103,6 +113,9 @@ public class AddEmployee extends JPanel {
         txtAnh.setHint("Đường dẫn ảnh");
         txtAnh.setPrefixIcon(new ImageIcon(getClass().getResource("/icon/image.png")));
         txtAnh.setEditable(false);
+        txtAnh.setPreferredSize(new Dimension(200, 30));
+        txtAnh.setMinimumSize(new Dimension(200, 30));
+        txtAnh.setMaximumSize(new Dimension(200, 30));
 
         txtLuong = new MyTextField();
         txtLuong.setHint("Nhập lương");
@@ -114,8 +127,8 @@ public class AddEmployee extends JPanel {
 
         btnChooseImage = new Button();
         btnChooseImage.setPreferredSize(new Dimension(100, 30));
-        btnChooseImage.setBackground(new Color(22, 216, 160));
-        btnChooseImage.setForeground(new Color(0, 0, 0));
+        btnChooseImage.setBackground(new Color(210, 30, 179));
+        btnChooseImage.setForeground(new Color(255, 255, 255));
         btnChooseImage.setText("Chọn Ảnh");
         btnChooseImage.setFont(new Font("Segoe UI", Font.BOLD, 14));
         btnChooseImage.setEnabled(false);
@@ -137,37 +150,37 @@ public class AddEmployee extends JPanel {
 
         btnAdd = new Button();
         btnAdd.setPreferredSize(new Dimension(100, 30));
-        btnAdd.setBackground(new Color(22, 216, 160));
-        btnAdd.setForeground(new Color(0, 0, 0));
+        btnAdd.setBackground(new Color(210, 30, 179));
+        btnAdd.setForeground(new Color(255, 255, 255));
         btnAdd.setText("Thêm");
         btnAdd.setFont(new Font("Segoe UI", Font.BOLD, 18));
 
         btnEdit = new Button();
         btnEdit.setPreferredSize(new Dimension(100, 30));
-        btnEdit.setBackground(new Color(22, 216, 160));
-        btnEdit.setForeground(new Color(0, 0, 0));
+        btnEdit.setBackground(new Color(210, 30, 179));
+        btnEdit.setForeground(new Color(255, 255, 255));
         btnEdit.setText("Sửa");
         btnEdit.setFont(new Font("Segoe UI", Font.BOLD, 18));
 
         btnDelete = new Button();
         btnDelete.setPreferredSize(new Dimension(100, 30));
-        btnDelete.setBackground(new Color(22, 216, 160));
-        btnDelete.setForeground(new Color(0, 0, 0));
+        btnDelete.setBackground(new Color(210, 30, 179));
+        btnDelete.setForeground(new Color(255, 255, 255));
         btnDelete.setText("Xóa");
         btnDelete.setFont(new Font("Segoe UI", Font.BOLD, 18));
 
         btnSave = new Button();
         btnSave.setPreferredSize(new Dimension(100, 30));
-        btnSave.setBackground(new Color(22, 216, 160));
-        btnSave.setForeground(new Color(0, 0, 0));
+        btnSave.setBackground(new Color(210, 30, 179));
+        btnSave.setForeground(new Color(255, 255, 255));
         btnSave.setText("Lưu");
         btnSave.setVisible(false);
         btnSave.setFont(new Font("Segoe UI", Font.BOLD, 18));
 
         btnCancel = new Button();
         btnCancel.setPreferredSize(new Dimension(100, 30));
-        btnCancel.setBackground(new Color(22, 216, 160));
-        btnCancel.setForeground(new Color(0, 0, 0));
+        btnCancel.setBackground(new Color(210, 30, 179));
+        btnCancel.setForeground(new Color(255, 255, 255));
         btnCancel.setText("Hủy");
         btnCancel.setVisible(false);
         btnCancel.setFont(new Font("Segoe UI", Font.BOLD, 18));
@@ -208,11 +221,11 @@ public class AddEmployee extends JPanel {
 
         // Sửa lỗi cú pháp MigLayout: đưa "gap 10" vào layoutConstraints
         JPanel imagePanel = new JPanel(new MigLayout("fill, gap 10", "[grow][300px]", "[grow]"));
-        imagePanel.setBackground(new Color(62, 167, 136));
+        imagePanel.setBackground(new Color(206, 157, 255));
         imagePanel.setPreferredSize(new Dimension(790, 400));
 
         JPanel infoPanel = new JPanel(new MigLayout("wrap", "[grow]", "[]10[]10[]"));
-        infoPanel.setBackground(new Color(62, 167, 136));
+        infoPanel.setBackground(new Color(255, 255, 255));
 
         lblDisplayTennv = new JLabel("Tên Nhân Viên: ");
         lblDisplayTennv.setFont(new Font("Segoe UI", Font.BOLD, 20));
@@ -354,10 +367,10 @@ public class AddEmployee extends JPanel {
 
     private void deleteNhanVien() {
         int confirm = JOptionPane.showConfirmDialog(
-            btnDelete,
-            "Bạn có chắc chắn muốn xóa nhân viên này?",
-            "Xác nhận",
-            JOptionPane.YES_NO_OPTION
+                btnDelete,
+                "Bạn có chắc chắn muốn xóa nhân viên này?",
+                "Xác nhận",
+                JOptionPane.YES_NO_OPTION
         );
 
         if (confirm == JOptionPane.YES_OPTION) {
@@ -581,7 +594,7 @@ public class AddEmployee extends JPanel {
             JFrame frame = new JFrame("Quản Lý Nhân Viên");
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.setSize(1240, 842);
-            frame.add(new AddEmployee());
+            frame.getContentPane().add(new AddEmployee());
             frame.setLocationRelativeTo(null);
             frame.setVisible(true);
         });

@@ -63,14 +63,19 @@ public class BillPanel extends JPanel {
 
         JPanel leftPanel = new JPanel(new MigLayout("fill", "[grow,fill]", "[]10[]10[]10[]10[]10[]"));
         leftPanel.setPreferredSize(new Dimension(450, 842));
-        leftPanel.setBackground(new Color(62, 167, 136));
+        leftPanel.setBackground(new Color(206, 157, 255));
 
         // Labels and Inputs
         JLabel lblMaDonMua = new JLabel("Mã Đơn Mua:");
+        lblMaDonMua.setForeground(new Color(255, 255, 255));
         JLabel lblTenSP = new JLabel("Tên Sản Phẩm:");
+        lblTenSP.setForeground(new Color(255, 255, 255));
         JLabel lblSoluong = new JLabel("Số Lượng:");
+        lblSoluong.setForeground(new Color(255, 255, 255));
         JLabel lblGia = new JLabel("Giá:");
+        lblGia.setForeground(new Color(255, 255, 255));
         JLabel lblNgayMua = new JLabel("Ngày Mua:");
+        lblNgayMua.setForeground(new Color(255, 255, 255));
 
         txtMaDonMua = new MyTextField();
         txtMaDonMua.setHint("Mã Đơn Mua");
@@ -111,37 +116,37 @@ public class BillPanel extends JPanel {
 
         btnAdd = new Button();
         btnAdd.setPreferredSize(new Dimension(100, 30));
-        btnAdd.setBackground(new Color(22, 216, 160));
-        btnAdd.setForeground(new Color(0, 0, 0));
+        btnAdd.setBackground(new Color(210, 30, 179));
+        btnAdd.setForeground(new Color(255, 255, 255));
         btnAdd.setText("Thêm");
         btnAdd.setFont(new Font("Segoe UI", Font.BOLD, 18));
 
         btnEdit = new Button();
         btnEdit.setPreferredSize(new Dimension(100, 30));
-        btnEdit.setBackground(new Color(22, 216, 160));
-        btnEdit.setForeground(new Color(0, 0, 0));
+        btnEdit.setBackground(new Color(210, 30, 179));
+        btnEdit.setForeground(new Color(255, 255, 255));
         btnEdit.setText("Sửa");
         btnEdit.setFont(new Font("Segoe UI", Font.BOLD, 18));
 
         btnDelete = new Button();
         btnDelete.setPreferredSize(new Dimension(100, 30));
-        btnDelete.setBackground(new Color(22, 216, 160));
-        btnDelete.setForeground(new Color(0, 0, 0));
+        btnDelete.setBackground(new Color(210, 30, 179));
+        btnDelete.setForeground(new Color(255, 255, 255));
         btnDelete.setText("Xóa");
         btnDelete.setFont(new Font("Segoe UI", Font.BOLD, 18));
 
         btnSave = new Button();
         btnSave.setPreferredSize(new Dimension(100, 30));
-        btnSave.setBackground(new Color(22, 216, 160));
-        btnSave.setForeground(new Color(0, 0, 0));
+        btnSave.setBackground(new Color(210, 30, 179));
+        btnSave.setForeground(new Color(255, 255, 255));
         btnSave.setText("Lưu");
         btnSave.setVisible(false);
         btnSave.setFont(new Font("Segoe UI", Font.BOLD, 18));
 
         btnCancel = new Button();
         btnCancel.setPreferredSize(new Dimension(100, 30));
-        btnCancel.setBackground(new Color(22, 216, 160));
-        btnCancel.setForeground(new Color(0, 0, 0));
+        btnCancel.setBackground(new Color(210, 30, 179));
+        btnCancel.setForeground(new Color(255, 255, 255));
         btnCancel.setText("Hủy");
         btnCancel.setVisible(false);
         btnCancel.setFont(new Font("Segoe UI", Font.BOLD, 18));

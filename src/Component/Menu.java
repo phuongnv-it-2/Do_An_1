@@ -20,14 +20,18 @@ import javax.swing.JFrame;
 import javax.swing.Timer;
 import Swing.ListMenu;
 import java.awt.Dimension;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import javax.imageio.ImageIO;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 import model.Model_Menu;
 
 public class Menu extends javax.swing.JPanel {
@@ -35,7 +39,7 @@ public class Menu extends javax.swing.JPanel {
     public void addEventMenu(EventMenu event) {
         this.event = event;
     }
-private String userEmail;
+    private String userEmail;
     private int selectedIndex = -1;
     private final Timer timer;
     private boolean toUp;
@@ -51,13 +55,23 @@ private String userEmail;
     private Color color1 = baseColor1;
     private Color color2 = baseColor2;
     private ServiceUser serviceUser;
+    private BufferedImage defaultImage;
 
     private float blend1 = 0f;
     private float blend2 = 0f;
     private int phase = 0;
     private Timer timer1;
+    private Menu menu;
 
     public Menu() {
+
+        try {
+            defaultImage = ImageIO.read(getClass().getResource("/icon/user_account.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+            defaultImage = null;
+        }
+
         this.serviceUser = new ServiceUser();
         initComponents();
         listMenu.setOpaque(false);
@@ -68,7 +82,7 @@ private String userEmail;
         System.out.println("imageAvatar size after init: " + imageAvatar.getWidth() + "x" + imageAvatar.getHeight());
         System.out.println("Menu is visible: " + this.isVisible());
         System.out.println("Menu size: " + this.getWidth() + "x" + this.getHeight());
-        
+
         listMenu.addEventSelectedMenu(new EventMenuSelected() {
             @Override
             public void menuSelected(int index, EventMenuCallBack callBack) {
@@ -132,7 +146,7 @@ private String userEmail;
         });
         initData();
         startColorAnimation();
-  
+
     }
 
     private void startColorAnimation() {
@@ -154,7 +168,7 @@ private String userEmail;
                     toColor1 = toColor2;
 
                     fromColor2 = toColor2;
-                    toColor2 = getNextColor(toColor2); // Lấy màu tiếp theo
+                    toColor2 = getNextColor(toColor2); 
                 }
 
                 color1 = blendColors(fromColor1, toColor1, progress);
@@ -192,7 +206,7 @@ private String userEmail;
         listMenu.addItem(new Model_Menu("6", "Employee Management", Model_Menu.MenuType.MENU));
         listMenu.addItem(new Model_Menu("7", "Revenue", Model_Menu.MenuType.MENU));
         listMenu.addItem(new Model_Menu("8", "Message", Model_Menu.MenuType.MENU));
-                listMenu.addItem(new Model_Menu("9", "Setting", Model_Menu.MenuType.MENU));
+        listMenu.addItem(new Model_Menu("9", "Setting", Model_Menu.MenuType.MENU));
         listMenu.addItem(new Model_Menu("", "", Model_Menu.MenuType.EMPTY));
     }
 
@@ -205,7 +219,7 @@ private String userEmail;
         g2.fillRoundRect(0, 0, getWidth(), getHeight(), 20, 20);
         if (selectedIndex >= 0) {
             int menuX = 10;
-            int height =50; // do cao cac dong menu
+            int height = 50; // do cao cac dong menu
             int width = getWidth();
             g2.setColor(new Color(242, 242, 242));
             g2.fillRoundRect(menuX, menuY, width, height, 35, 35);
@@ -300,6 +314,13 @@ private String userEmail;
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(listMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 505, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
+
+        lbUsername.setPreferredSize(new Dimension(192, 31)); // Cố định kích thước
+        lbUsername.setMinimumSize(new Dimension(192, 31));
+        lbUsername.setMaximumSize(new Dimension(192, 31));
+        imageAvatar.setPreferredSize(new Dimension(192, 31)); // Cố định kích thước
+        imageAvatar.setMinimumSize(new Dimension(192, 31));
+        imageAvatar.setMaximumSize(new Dimension(192, 31));
     }// </editor-fold>//GEN-END:initComponents
 private int x;
     private int y;
@@ -321,71 +342,84 @@ private int x;
         });
 
     }
- public void setImageAvatarFromAccount(String email) {
-    BufferedImage img = null;
-    String avatarPath = serviceUser.getImagePathByEmail(email); 
 
-    try {
-        if (avatarPath != null && !avatarPath.isEmpty()) {
-            File file = new File(avatarPath);
-            if (file.exists()) {
-                img = ImageIO.read(file);
-                System.out.println("Đã tải ảnh đại diện từ file: " + avatarPath);
+public void setImageAvatarFromAccount(String email) {
+        BufferedImage img = null;
+        try {
+            System.out.println("Đang tải ảnh cho email: " + email);
+            String avatarPath = serviceUser.getImagePathByEmail(email);
+            System.out.println("AvatarPath từ CSDL: '" + avatarPath + "'");
+            if (avatarPath != null && !avatarPath.isEmpty()) {
+                File file = new File(avatarPath);
+                System.out.println("File exists: " + file.exists() + ", readable: " + file.canRead());
+                if (file.exists() && file.canRead()) {
+                    img = ImageIO.read(file);
+                    System.out.println("Đã tải ảnh đại diện từ file: " + avatarPath);
+                } else {
+                    System.out.println("File ảnh không tồn tại hoặc không đọc được: " + avatarPath);
+                }
             } else {
-                System.out.println("File ảnh không tồn tại: " + avatarPath);
+                System.out.println("Không có đường dẫn ảnh trong CSDL.");
             }
-        } else {
-            System.out.println("Không có đường dẫn ảnh trong CSDL.");
-        }
 
-        // Nếu không có ảnh, tải ảnh mặc định
-        if (img == null) {
+            if (img == null) {
+                InputStream defaultImageStream = getClass().getResourceAsStream("/icon/user.png");
+                if (defaultImageStream != null) {
+                    img = ImageIO.read(defaultImageStream);
+                    System.out.println("Đã tải ảnh mặc định.");
+                } else {
+                    System.out.println("Không tìm thấy tài nguyên /icon/user.png.");
+                }
+            }
+
+            if (img != null) {
+                // Thay đổi kích thước ảnh nếu cần
+                if (img.getWidth() < 100 || img.getHeight() < 100) {
+                    Image scaledImage = img.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+                    BufferedImage scaledImg = new BufferedImage(100, 100, BufferedImage.TYPE_INT_ARGB);
+                    Graphics2D g2d = scaledImg.createGraphics();
+                    g2d.drawImage(scaledImage, 0, 0, null);
+                    g2d.dispose();
+                    img = scaledImg;
+                }
+                BufferedImage finalImg = img;
+                SwingUtilities.invokeLater(() -> {
+                    imageAvatar.setImage(finalImg);
+                    imageAvatar.revalidate();
+                    imageAvatar.repaint();
+                    System.out.println("Đã đặt ảnh vào imageAvatar. Kích thước: " + finalImg.getWidth() + "x" + finalImg.getHeight());
+                    System.out.println("imageAvatar visible: " + imageAvatar.isVisible());
+                    System.out.println("imageAvatar bounds: " + imageAvatar.getBounds());
+                });
+            } else {
+                System.out.println("Không có ảnh hợp lệ để đặt vào ImageAvatar.");
+            }
+        } catch (IOException e) {
+            System.err.println("Lỗi khi tải ảnh: " + e.getMessage());
+            e.printStackTrace();
+            SwingUtilities.invokeLater(this::setDefaultImage);
+        }
+    }
+    public void setDefaultImage() {
+        try {
             InputStream defaultImageStream = getClass().getResourceAsStream("/icon/user.png");
             if (defaultImageStream != null) {
-                img = ImageIO.read(defaultImageStream);
-                System.out.println("Đã tải ảnh mặc định.");
+                BufferedImage defaultImage = ImageIO.read(defaultImageStream);
+                imageAvatar.setImage(defaultImage);
+                imageAvatar.repaint();
+                System.out.println("Đã đặt ảnh mặc định vào ImageAvatar");
             } else {
-                System.out.println("Không tìm thấy ảnh mặc định.");
+                System.out.println("Không tìm thấy ảnh mặc định để đặt!");
             }
+        } catch (IOException ex) {
+            System.out.println("Lỗi khi tải ảnh mặc định: " + ex.getMessage());
         }
-
-        // Set ảnh vào imageAvatar nếu ảnh hợp lệ
-        if (img != null) {
-            imageAvatar.setImage(img);
-            imageAvatar.revalidate(); // Kiểm tra lại kích thước và cấu trúc
-            imageAvatar.repaint(); // Vẽ lại ảnh
-        } else {
-            System.out.println("Không có ảnh hợp lệ để đặt vào ImageAvatar.");
-        }
-
-    } catch (IOException e) {
-        JOptionPane.showMessageDialog(null, "Lỗi khi tải ảnh từ đường dẫn: " + e.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
-        // Nếu có lỗi trong quá trình tải ảnh, bạn có thể đặt ảnh mặc định tại đây:
-        setDefaultImage();
     }
-}
-
-private void setDefaultImage() {
-    try {
-        InputStream defaultImageStream = getClass().getResourceAsStream("/icon/user.png");
-        if (defaultImageStream != null) {
-            BufferedImage defaultImage = ImageIO.read(defaultImageStream);
-            imageAvatar.setImage(defaultImage);
-            imageAvatar.repaint();
-            System.out.println("Đã đặt ảnh mặc định vào ImageAvatar");
-        } else {
-            System.out.println("Không tìm thấy ảnh mặc định để đặt!");
-        }
-    } catch (IOException ex) {
-        System.out.println("Lỗi khi tải ảnh mặc định: " + ex.getMessage());
-    }
-}
-
 
     public void setUserEmail(String email) {
-    this.userEmail = email;
-    setImageAvatarFromAccount(email);
-}
+        this.userEmail = email;
+        setImageAvatarFromAccount(email);
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -395,11 +429,16 @@ private void setDefaultImage() {
     private Swing.ListMenu<String> listMenu;
     private javax.swing.JPanel panelMoving;
     // End of variables declaration//GEN-END:variables
-public JLabel getLbUserName(){
-    return lbUsername;
-}
-public ImageAvatar getImageAvatar(){
-    return imageAvatar;
-}
+public JLabel getLbUserName() {
+        return lbUsername;
+    }
+
+    public ImageAvatar getImageAvatar() {
+        return imageAvatar;
+    }
+
+    public Menu getMeu() {
+        return menu;
+    }
 
 }

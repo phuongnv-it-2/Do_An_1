@@ -51,8 +51,9 @@ public class OrderPanel extends JPanel {
         setLayout(new MigLayout("fill", "[60%][40%]", "[grow]"));
 
         productPanel = new JPanel();
+        productPanel.setForeground(new Color(255, 255, 255));
         productPanel.setLayout(new GridLayout(0, 4, 10, 10));
-        productPanel.setBackground(new Color(62, 167, 136));
+        productPanel.setBackground(Color.decode("#CBAACB"));
 
         scrollPane = new JScrollPane(productPanel);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
@@ -64,11 +65,11 @@ public class OrderPanel extends JPanel {
 
         orderButton = new JButton("Order");
         orderButton.setPreferredSize(new Dimension(150, 40));
-        orderButton.setForeground(Color.BLACK);
+        orderButton.setForeground(new Color(255, 255, 255));
         orderButton.setFont(new Font("Segoe UI", Font.BOLD, 16));
         orderButton.setFocusPainted(false);
         orderButton.setBorderPainted(false);
-        orderButton.setBackground(new Color(22, 216, 160));
+        orderButton.setBackground(new Color(210, 30, 179));
 
         orderButton.addActionListener(e -> {
             if (cart.isEmpty()) {
@@ -146,7 +147,7 @@ public class OrderPanel extends JPanel {
 
                 JPanel itemPanel = new JPanel(new BorderLayout());
                 itemPanel.setPreferredSize(new Dimension(170, 250));
-                itemPanel.setBackground(new Color(84, 196, 164));
+                itemPanel.setBackground( Color.decode("#FFC0CB"));
                 itemPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
                 ImageIcon icon = new ImageIcon(imagePath);

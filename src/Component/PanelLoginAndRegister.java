@@ -36,12 +36,14 @@ import Service.ServiceUser;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import Component.Menu;
+import Service.Service;
 
 public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
 
     private ActionListener forgetPasswordListener;
     private Menu menu;
     private ServiceUser serviceUser;
+    private Service service;
 
     public ModelLogin getDataLogin() {
         return dataLogin;
@@ -192,23 +194,22 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
         cmd.addActionListener(eventLogin);
         cmd.setText("SIGN IN");
         login.add(cmd, "w 40%, h 40");
-        cmd.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-
-                String email = txtEmail.getText().trim();
-                String password = String.valueOf(txtPass.getPassword());
-                String Name = serviceUser.getUsernameByEmail(email);
-                menu.getLbUserName().setText(Name);
-                String AvatarPath = serviceUser.getImagePathByEmail(email);
-                Menu mainForm = new Menu();
-                mainForm.setUserEmail(email);
-
-//                    menu.getImageAvatar().setImage(AvatarPath);
-                dataLogin = new ModelLogin(email, password);
-//                  menu.set(email);
-            }
-        });
+      cmd.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            String email = txtEmail.getText().trim();
+            String password = String.valueOf(txtPass.getPassword());
+            String Name = serviceUser.getUsernameByEmail(email);
+            menu.getLbUserName().setText(Name);
+            dataLogin = new ModelLogin(email, password);
+            SystemMain main = new SystemMain();
+            Service.getInstance(main);
+            Menu menu = service.getInstance(main).getMain().getBody().getMenu();
+            menu.setUserEmail(email); // Chỉ gọi setUserEmail
+            menu.revalidate();
+            menu.repaint();
+        }
+    });
     }
 
     public void showRegister(boolean show) {
