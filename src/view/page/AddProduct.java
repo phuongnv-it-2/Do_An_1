@@ -30,13 +30,13 @@ public class AddProduct extends JPanel {
     private int index = -1;
 
     private Form_Home form_Home;
-    private JLabel jLabel2, jLabel3, jLabel4, jLabel5, jLabel6, jLabel7;
+    private JLabel jLabel2, jLabel3, jLabel4, jLabel6, jLabel7;
     private Button JbtSua, JbtThem, JbtXoa, JbtLuu, JbtHuy;
     private JTable jTable1;
     private JScrollPane jScrollPane1;
     private int check = 0; // 0: bình thường, 1: thêm, -1: sửa
     private Button btnBrowse;
-    private MyTextField txtname, txtprice, txtquantity, txtmota, txtpath, txtfind;
+    private MyTextField txtname, txtprice, txtmota, txtpath, txtfind;
     private JComboBox<String> txtcategory;
     private Service service;
 
@@ -47,7 +47,7 @@ public class AddProduct extends JPanel {
         setLayout(new BorderLayout());
 
         // Tạo panel bên trái với MigLayout
-        JPanel leftPanel = new JPanel(new MigLayout("fill", "[grow, fill]", "[]10[]10[]10[]10[]10[]10[]10[]"));
+        JPanel leftPanel = new JPanel(new MigLayout("fill", "[grow, fill]", "[]10[]10[]10[]10[]10[]10[]"));
         leftPanel.setBackground(new Color(206, 157, 255));
 
         // Khởi tạo các thành phần giao diện
@@ -92,17 +92,6 @@ public class AddProduct extends JPanel {
         txtprice.setHint("Price");
         txtprice.setEditable(false);
         txtprice.setPreferredSize(new Dimension(200, 30));
-
-        jLabel5 = new JLabel("Số lượng:");
-        jLabel5.setForeground(new Color(255, 255, 255));
-        jLabel5.setFont(new Font("Segoe UI", Font.BOLD, 14));
-        jLabel5.setPreferredSize(new Dimension(100, 30));
-
-        txtquantity = new MyTextField();
-        txtquantity.setPrefixIcon(new ImageIcon(getClass().getResource("/icon/quantity.png")));
-        txtquantity.setHint("Quantity");
-        txtquantity.setEditable(false);
-        txtquantity.setPreferredSize(new Dimension(200, 30));
 
         jLabel6 = new JLabel("Danh mục:");
         jLabel6.setForeground(new Color(255, 255, 255));
@@ -181,24 +170,22 @@ public class AddProduct extends JPanel {
         leftPanel.add(imagePanel, "cell 1 1");
         leftPanel.add(jLabel4, "cell 0 2");
         leftPanel.add(txtprice, "cell 1 2");
-        leftPanel.add(jLabel5, "cell 0 3");
-        leftPanel.add(txtquantity, "cell 1 3");
-        leftPanel.add(jLabel6, "cell 0 4");
-        leftPanel.add(txtcategory, "cell 1 4");
-        leftPanel.add(jLabel7, "cell 0 5");
-        leftPanel.add(txtmota, "cell 1 5");
-        leftPanel.add(txtfind, "cell 0 6, span 2");
-        leftPanel.add(JbtSua, "cell 0 7");
-        leftPanel.add(JbtThem, "cell 1 7");
-        leftPanel.add(JbtXoa, "cell 2 7");
-        leftPanel.add(JbtLuu, "cell 0 8");
-        leftPanel.add(JbtHuy, "cell 1 8");
+        leftPanel.add(jLabel6, "cell 0 3");
+        leftPanel.add(txtcategory, "cell 1 3");
+        leftPanel.add(jLabel7, "cell 0 4");
+        leftPanel.add(txtmota, "cell 1 4");
+        leftPanel.add(txtfind, "cell 0 5, span 2");
+        leftPanel.add(JbtSua, "cell 0 6");
+        leftPanel.add(JbtThem, "cell 1 6");
+        leftPanel.add(JbtXoa, "cell 2 6");
+        leftPanel.add(JbtLuu, "cell 0 7");
+        leftPanel.add(JbtHuy, "cell 1 7");
 
         // Khởi tạo bảng JTable
         jTable1 = new JTable();
         jTable1.setModel(new DefaultTableModel(
                 new Object[][]{},
-                new String[]{"STT", "ID", "Tên", "Giá", "Số lượng", "Danh mục", "Mô tả", "Path"}
+                new String[]{"STT", "ID", "Tên", "Giá", "Danh mục", "Mô tả", "Path"}
         ));
         jTable1.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 26));
         jTable1.setFont(new Font("Segoe UI", Font.PLAIN, 20));
@@ -207,11 +194,10 @@ public class AddProduct extends JPanel {
         jTable1.getColumnModel().getColumn(1).setPreferredWidth(50);
         jTable1.getColumnModel().getColumn(2).setPreferredWidth(150);
         jTable1.getColumnModel().getColumn(3).setPreferredWidth(75);
-        jTable1.getColumnModel().getColumn(4).setPreferredWidth(75);
-        jTable1.getColumnModel().getColumn(5).setPreferredWidth(100);
-        jTable1.getColumnModel().getColumn(6).setPreferredWidth(200);
-        jTable1.getColumnModel().getColumn(7).setPreferredWidth(300);
-        jTable1.getColumnModel().getColumn(7).setCellRenderer(new ImageRenderer());
+        jTable1.getColumnModel().getColumn(4).setPreferredWidth(100);
+        jTable1.getColumnModel().getColumn(5).setPreferredWidth(200);
+        jTable1.getColumnModel().getColumn(6).setPreferredWidth(300);
+        jTable1.getColumnModel().getColumn(6).setCellRenderer(new ImageRenderer());
         jTable1.setForeground(Color.BLACK);
         jTable1.setSelectionBackground(new Color(22, 216, 160));
         jTable1.setSelectionForeground(Color.WHITE);
@@ -230,7 +216,6 @@ public class AddProduct extends JPanel {
                     txtname.setEditable(true);
                     txtpath.setEditable(true);
                     txtprice.setEditable(true);
-                    txtquantity.setEditable(true);
                     txtcategory.setEnabled(true);
                     txtmota.setEditable(true);
                     onOff(false, true);
@@ -245,13 +230,11 @@ public class AddProduct extends JPanel {
                 txtname.setEditable(true);
                 txtprice.setEditable(true);
                 txtpath.setEditable(true);
-                txtquantity.setEditable(true);
                 txtcategory.setEnabled(true);
                 txtmota.setEditable(true);
                 txtname.setText("");
                 txtprice.setText("");
                 txtpath.setText("");
-                txtquantity.setText("");
                 txtcategory.setSelectedIndex(-1);
                 txtmota.setText("");
                 onOff(false, true);
@@ -288,7 +271,7 @@ public class AddProduct extends JPanel {
                         ex.printStackTrace();
                     }
                 }
-                                service.getInstance().getMain().getBody().getForm_Home().reloadProducts();
+                service.getInstance().getMain().getBody().getForm_Home().reloadProducts();
             }
         });
 
@@ -299,25 +282,22 @@ public class AddProduct extends JPanel {
                 try {
                     String ten = txtname.getText().trim();
                     String priceText = txtprice.getText().trim();
-                    String quantityText = txtquantity.getText().trim();
                     String danhmuc = (String) txtcategory.getSelectedItem();
                     String mota = txtmota.getText().trim();
                     String path = txtpath.getText().trim();
 
                     // Kiểm tra các trường bắt buộc
-                    if (ten.isEmpty() || priceText.isEmpty() || quantityText.isEmpty() || danhmuc == null || mota.isEmpty() || path.isEmpty()) {
+                    if (ten.isEmpty() || priceText.isEmpty() || danhmuc == null || mota.isEmpty() || path.isEmpty()) {
                         JOptionPane.showMessageDialog(null, "Vui lòng điền đầy đủ thông tin!", "Cảnh báo", JOptionPane.WARNING_MESSAGE);
                         return;
                     }
 
                     // Kiểm tra định dạng số
                     double gia;
-                    int soluong;
                     try {
                         gia = Double.parseDouble(priceText);
-                        soluong = Integer.parseInt(quantityText);
                     } catch (NumberFormatException e) {
-                        JOptionPane.showMessageDialog(null, "Giá và số lượng phải là số hợp lệ!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Giá phải là số hợp lệ!", "Lỗi", JOptionPane.ERROR_MESSAGE);
                         return;
                     }
 
@@ -326,23 +306,18 @@ public class AddProduct extends JPanel {
                         JOptionPane.showMessageDialog(null, "Giá phải lớn hơn 0!", "Lỗi", JOptionPane.ERROR_MESSAGE);
                         return;
                     }
-                    if (soluong < 0) {
-                        JOptionPane.showMessageDialog(null, "Số lượng không được âm!", "Lỗi", JOptionPane.ERROR_MESSAGE);
-                        return;
-                    }
 
                     // Thao tác với cơ sở dữ liệu
                     try (Connection conn = JDBCuntil.getconection()) {
                         PreparedStatement pstmt = null;
                         if (check == 1) { // Thêm mới
-                            String sql = "INSERT INTO sanpham (TenSanPham, LoaiSanPham, Gia, SoLuong, MoTa, Path) VALUES (?, ?, ?, ?, ?, ?)";
+                            String sql = "INSERT INTO sanpham (TenSanPham, LoaiSanPham, Gia, MoTa, Path) VALUES (?, ?, ?, ?, ?)";
                             pstmt = conn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
                             pstmt.setString(1, ten);
                             pstmt.setString(2, danhmuc);
                             pstmt.setDouble(3, gia);
-                            pstmt.setInt(4, soluong);
-                            pstmt.setString(5, mota);
-                            pstmt.setString(6, path);
+                            pstmt.setString(4, mota);
+                            pstmt.setString(5, path);
                             pstmt.executeUpdate();
 
                             // Lấy ID được tạo tự động
@@ -351,20 +326,19 @@ public class AddProduct extends JPanel {
                                 if (rs.next()) {
                                     newId = rs.getInt(1);
                                 }
-                                list.add(new ModelProducts(newId, ten, danhmuc, gia, soluong, mota, path));
+                                list.add(new ModelProducts(newId, ten, danhmuc, gia, mota, path));
                             }
                         } else if (check == -1 && index >= 0 && index < list.size()) { // Sửa
-                            String sql = "UPDATE sanpham SET TenSanPham = ?, LoaiSanPham = ?, Gia = ?, SoLuong = ?, MoTa = ?, Path = ? WHERE MaSanPham = ?";
+                            String sql = "-MISSING-UPDATE sanpham SET TenSanPham = ?, LoaiSanPham = ?, Gia = ?, MoTa = ?, Path = ? WHERE MaSanPham = ?";
                             pstmt = conn.prepareStatement(sql);
                             pstmt.setString(1, ten);
                             pstmt.setString(2, danhmuc);
                             pstmt.setDouble(3, gia);
-                            pstmt.setInt(4, soluong);
-                            pstmt.setString(5, mota);
-                            pstmt.setString(6, path);
-                            pstmt.setInt(7, list.get(index).getId());
+                            pstmt.setString(4, mota);
+                            pstmt.setString(5, path);
+                            pstmt.setInt(6, list.get(index).getId());
                             pstmt.executeUpdate();
-                            list.set(index, new ModelProducts(list.get(index).getId(), ten, danhmuc, gia, soluong, mota, path));
+                            list.set(index, new ModelProducts(list.get(index).getId(), ten, danhmuc, gia, mota, path));
                         }
                         if (pstmt != null) {
                             pstmt.close();
@@ -375,7 +349,6 @@ public class AddProduct extends JPanel {
                     txtname.setEditable(false);
                     txtprice.setEditable(false);
                     txtpath.setEditable(false);
-                    txtquantity.setEditable(false);
                     txtcategory.setEnabled(false);
                     txtmota.setEditable(false);
                     check = 0;
@@ -399,7 +372,6 @@ public class AddProduct extends JPanel {
                 txtname.setEditable(false);
                 txtprice.setEditable(false);
                 txtpath.setEditable(false);
-                txtquantity.setEditable(false);
                 txtcategory.setEnabled(false);
                 txtmota.setEditable(false);
                 view();
@@ -449,17 +421,16 @@ public class AddProduct extends JPanel {
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
 
-        try (Connection con = JDBCuntil.getconection(); PreparedStatement st = con.prepareStatement("SELECT MaSanPham, TenSanPham, LoaiSanPham, Gia, SoLuong, MoTa, Path FROM sanpham"); ResultSet rs = st.executeQuery()) {
+        try (Connection con = JDBCuntil.getconection(); PreparedStatement st = con.prepareStatement("SELECT MaSanPham, TenSanPham, LoaiSanPham, Gia, MoTa, Path FROM sanpham"); ResultSet rs = st.executeQuery()) {
             while (rs.next()) {
                 int id = rs.getInt("MaSanPham");
                 String ten = rs.getString("TenSanPham");
                 String danhmuc = rs.getString("LoaiSanPham");
                 double gia = rs.getDouble("Gia");
-                int soluong = rs.getInt("SoLuong");
                 String mota = rs.getString("MoTa");
                 String path = rs.getString("Path");
-                list.add(new ModelProducts(id, ten, danhmuc, gia, soluong, mota, path));
-                model.addRow(new Object[]{list.size(), id, ten, gia, soluong, danhmuc, mota, path});
+                list.add(new ModelProducts(id, ten, danhmuc, gia, mota, path));
+                model.addRow(new Object[]{list.size(), id, ten, gia, danhmuc, mota, path});
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Lỗi khi tải dữ liệu: " + e.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
@@ -473,7 +444,7 @@ public class AddProduct extends JPanel {
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
 
-        try (Connection con = JDBCuntil.getconection(); PreparedStatement st = con.prepareStatement("SELECT MaSanPham, TenSanPham, LoaiSanPham, Gia, SoLuong, MoTa, Path FROM sanpham WHERE TenSanPham LIKE ?")) {
+        try (Connection con = JDBCuntil.getconection(); PreparedStatement st = con.prepareStatement("SELECT MaSanPham, TenSanPham, LoaiSanPham, Gia, MoTa, Path FROM sanpham WHERE TenSanPham LIKE ?")) {
             st.setString(1, "%" + searchTerm + "%");
             try (ResultSet rs = st.executeQuery()) {
                 int stt = 1;
@@ -482,10 +453,9 @@ public class AddProduct extends JPanel {
                     String ten = rs.getString("TenSanPham");
                     String danhmuc = rs.getString("LoaiSanPham");
                     double gia = rs.getDouble("Gia");
-                    int soluong = rs.getInt("SoLuong");
                     String mota = rs.getString("MoTa");
                     String path = rs.getString("Path");
-                    model.addRow(new Object[]{stt++, id, ten, gia, soluong, danhmuc, mota, path});
+                    model.addRow(new Object[]{stt++, id, ten, gia, danhmuc, mota, path});
                 }
             }
         } catch (SQLException e) {
@@ -505,7 +475,6 @@ public class AddProduct extends JPanel {
                 product.getId(),
                 product.getName(),
                 product.getPrice(),
-                product.getQuantity(),
                 product.getCategory(),
                 product.getMoTa(),
                 product.getPath()
@@ -518,7 +487,6 @@ public class AddProduct extends JPanel {
         if (index < 0 || index >= list.size()) {
             txtname.setText("");
             txtprice.setText("");
-            txtquantity.setText("");
             txtcategory.setSelectedIndex(-1);
             txtmota.setText("");
             txtpath.setText("");
@@ -528,7 +496,6 @@ public class AddProduct extends JPanel {
         products = list.get(index);
         txtname.setText(products.getName());
         txtprice.setText(String.valueOf(products.getPrice()));
-        txtquantity.setText(String.valueOf(products.getQuantity()));
 
         // Xử lý danh mục không hợp lệ
         String category = products.getCategory();
