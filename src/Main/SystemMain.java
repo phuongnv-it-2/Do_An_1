@@ -15,6 +15,7 @@ import com.formdev.flatlaf.FlatLightLaf;
 import io.socket.client.Ack;
 import java.util.ArrayList;
 import java.util.Arrays;
+import server.ChatServer;
 //
 public class SystemMain extends javax.swing.JFrame {
 
@@ -90,7 +91,7 @@ public class SystemMain extends javax.swing.JFrame {
                         cardLayout.show(body, "VongQuayDoHoa");
                         break;
                            case 11:
-                        cardLayout.show(body, "Home");
+                        cardLayout.show(body, "Setting");
                         break;
                     default:
                         cardLayout.show(body, "Form_Home");
@@ -117,12 +118,22 @@ public class SystemMain extends javax.swing.JFrame {
     public void reset() {
         // Thêm logic đặt lại trạng thái nếu cần
     }
+        private void startServer() {
+        new Thread(() -> {
+            ChatServer.main(null);  // Chạy server
+        }).start();
+    }
  
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -137,6 +148,10 @@ public class SystemMain extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        startServer();
+    }//GEN-LAST:event_formWindowOpened
 
  public static void main(String args[]) throws UnsupportedLookAndFeelException {
         try {

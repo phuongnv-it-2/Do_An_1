@@ -65,7 +65,7 @@ public class Chat_Bottom extends javax.swing.JPanel {
                 if (!text.isEmpty()) {
 //                    if (loginForm != null && currentUser != null) {
                   PublicEvent.getInstance().getEventChat().sendMessage(text);
-                   PublicEvent.getInstance().getEventChat().receiveMessage(text);
+//                   PublicEvent.getInstance().getEventChat().receiveMessage(text);
                         txt.setText("");
                         txt.grabFocus();
                         refresh();

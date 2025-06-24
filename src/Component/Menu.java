@@ -61,6 +61,7 @@ public class Menu extends javax.swing.JPanel {
     private float blend2 = 0f;
     private int phase = 0;
     private Timer timer1;
+    private boolean isAnimating= false;
     private Menu menu;
 
     public Menu() {
@@ -144,6 +145,10 @@ public class Menu extends javax.swing.JPanel {
     }
 
     private void startColorAnimation() {
+        if (timer1 != null && timer1.isRunning()) {
+            return; // Đã chạy rồi thì không cần chạy lại
+        }
+
         timer1 = new Timer(60, new ActionListener() {
             private Color fromColor1 = baseColor1;
             private Color toColor1 = baseColor2;
@@ -158,6 +163,7 @@ public class Menu extends javax.swing.JPanel {
                 progress += 0.02f;
                 if (progress >= 1f) {
                     progress = 0f;
+
                     fromColor1 = toColor1;
                     toColor1 = toColor2;
 
@@ -170,8 +176,32 @@ public class Menu extends javax.swing.JPanel {
                 repaint();
             }
         });
+
         timer1.start();
+        isAnimating = true;
     }
+   private void stopColorAnimation() {
+    if (timer1 != null) {
+        timer1.stop();
+        timer1 = null;
+        isAnimating = false;
+
+        // Reset về màu ban đầu (hoặc chọn màu tĩnh tùy ý)
+        color1 = baseColor1;
+        color2 = baseColor1;  // hoặc baseColor2
+        repaint(); // bắt buộc để áp dụng lại ngay màu dừng
+    }
+}
+
+
+   public void toggleColorAnimation() {
+    if (isAnimating) {
+        stopColorAnimation();
+    } else {
+        startColorAnimation();
+    }
+}
+
 
     private Color getNextColor(Color current) {
         if (current.equals(baseColor1)) {
@@ -230,7 +260,6 @@ public class Menu extends javax.swing.JPanel {
         }
         super.paintComponent(grphcs);
     }
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

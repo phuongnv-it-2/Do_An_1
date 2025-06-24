@@ -37,7 +37,7 @@ public class Chat_Left extends javax.swing.JLayeredPane {
     SimpleDateFormat sdf = new SimpleDateFormat("hh:mm a");
     String currentTime = sdf.format(new Date());
     txt.setTime(currentTime);  
-}
+} 
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

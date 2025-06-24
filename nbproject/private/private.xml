@@ -13,20 +13,14 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/E:/NetBean/NetBeans-25/Do_AN/src/Server/ChatServer.java</file>
-            <file>file:/E:/NetBean/NetBeans-25/Do_AN/src/form/Home.java</file>
-            <file>file:/E:/NetBean/NetBeans-25/Do_AN/src/Client/Client.java</file>
             <file>file:/E:/NetBean/NetBeans-25/Do_AN/src/Server/ClientHandler.java</file>
-            <file>file:/E:/NetBean/NetBeans-25/Do_AN/src/form/LoginForm.java</file>
-            <file>file:/E:/NetBean/NetBeans-25/Do_AN/src/Event/EventChat.java</file>
-            <file>file:/E:/NetBean/NetBeans-25/Do_AN/src/form/Chat.java</file>
-            <file>file:/E:/NetBean/NetBeans-25/Do_AN/src/Event/EventChatImpl.java</file>
             <file>file:/E:/NetBean/NetBeans-25/Do_AN/src/Component/Chat_Body.java</file>
             <file>file:/E:/NetBean/NetBeans-25/Do_AN/src/Component/Chat_Bottom.java</file>
-            <file>file:/E:/NetBean/NetBeans-25/Do_AN/src/Component/Chat_Date.java</file>
             <file>file:/E:/NetBean/NetBeans-25/Do_AN/src/Component/Chat_Left.java</file>
-            <file>file:/E:/NetBean/NetBeans-25/Do_AN/src/Component/Chat_Left_With_Profile.java</file>
+            <file>file:/E:/NetBean/NetBeans-25/Do_AN/src/Component/Chat_Item.java</file>
             <file>file:/E:/NetBean/NetBeans-25/Do_AN/src/Component/Chat_Right.java</file>
-            <file>file:/E:/NetBean/NetBeans-25/Do_AN/src/Component/Menu.java</file>
+            <file>file:/E:/NetBean/NetBeans-25/Do_AN/src/Main/main.java</file>
+            <file>file:/E:/NetBean/NetBeans-25/Do_AN/src/Main/SystemMain.java</file>
         </group>
     </open-files>
 </project-private>

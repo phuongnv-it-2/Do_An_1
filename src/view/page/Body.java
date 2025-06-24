@@ -1,6 +1,8 @@
 package view.page;
 
 import Component.Menu;
+import Swing.Setting;
+import Swing.SquarePanel;
 import form.Home;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
@@ -22,6 +24,9 @@ public class Body extends JPanel {
     private VongQuayDoHoa vongQuayDoHoa;
     private BillManager billManager;
     private DiscountManager discountManager;
+    private Setting setting;
+       private SquarePanel squarePanel;
+
 
     public Body() {
         initComponents();
@@ -41,6 +46,8 @@ public class Body extends JPanel {
         vongQuayDoHoa = new VongQuayDoHoa();
         billManager = new BillManager();
         discountManager = new DiscountManager();
+        setting = new Setting(this);
+        squarePanel= new SquarePanel();
 
         add(form_Home_Material, "Form_Home_Material");
         add(form_home, "Form_Home");
@@ -53,6 +60,11 @@ public class Body extends JPanel {
         add(home, "Home");
         add(billManager, "BillManager");
         add(discountManager, "DiscountManager");
+        add(setting, "Setting");
+        add(squarePanel, "SquarePanel");
+        add(menu, "Menu");
+
+
 
     }
 
@@ -78,6 +90,9 @@ public class Body extends JPanel {
 
     public Home getHome() {
         return home;
+    }
+      public SquarePanel getSquarePanel() {
+        return squarePanel;
     }
 
     @SuppressWarnings("unchecked")
